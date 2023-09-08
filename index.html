@@ -21,14 +21,17 @@
           alt="Menu icon"
           class="header__menu"
         />
-        <img src="./images/logo.svg" alt="Logo" class="header__menu" />
+        <img src="./images/logo.svg" alt="Logo" class="header__logo" />
       </div>
       <div class="header__cart-avatar">
-        <img
-          src="./images/icon-cart.svg"
-          alt="Cart icon"
-          class="header__cart"
-        />
+        <figure class="header__cart-container">
+          <img
+            src="./images/icon-cart.svg"
+            alt="Cart icon"
+            class="header__cart"
+          />
+          <span class="header__cart-quantity hidden">3</span>
+        </figure>
         <img
           src="./images/image-avatar.png"
           alt="Avatar image"
@@ -37,6 +40,36 @@
       </div>
     </header>
     <div class="gallery-product">
+      <div class="cart hidden">
+        <div class="cart__text">Cart</div>
+        <hr class="cart__line" />
+        <div class="cart__empty">Your cart is empty.</div>
+        <div class="cart__full">
+          <div class="cart__thumbnail-description-delete">
+            <img
+              src="./images/image-product-1-thumbnail.jpg"
+              alt="Sneaker thumbnail"
+              class="cart__thumbnail"
+            />
+            <div class="cart__description">
+              <span class="cart__product-name"
+                >Fall Limited Edition Sneakers</span
+              >
+              <div class="cart__product-pricing">
+                <span class="cart__product-price">$125.00 x</span>
+                <span class="cart__product-quantity">3</span>
+                <span class="cart__total-price">$375.00</span>
+              </div>
+            </div>
+            <img
+              src="./images/icon-delete.svg"
+              alt="Delete icon"
+              class="cart__delete-icon"
+            />
+          </div>
+          <button class="cart__checkout-btn" type="button">Checkout</button>
+        </div>
+      </div>
       <div class="gallery mobile">
         <figure class="gallery__img-container">
           <img
@@ -45,14 +78,14 @@
             class="gallery__current-img"
           />
         </figure>
-        <button class="gallery__previous-btn gallery-btn">
+        <button class="gallery__previous-btn gallery-btn" type="button">
           <img
             src="./images/icon-previous.svg"
             alt="Previous icon"
             class="gallery__previous-icon"
           />
         </button>
-        <button class="gallery__next-btn gallery-btn">
+        <button class="gallery__next-btn gallery-btn" type="button">
           <img
             src="./images/icon-next.svg"
             alt="Next icon"
@@ -74,9 +107,9 @@
           <span class="product__percent-off">50%</span>
           <span class="product__original-price">$250.00</span>
         </div>
-        <div class="product__quantity-cart">
+        <div class="quantity-cart">
           <div class="quantity">
-            <button class="quantity__minus">
+            <button class="quantity__minus" type="button">
               <img
                 src="./images/icon-minus.svg"
                 alt="Minus icon"
@@ -84,7 +117,7 @@
               />
             </button>
             <span class="quantity__number">0</span>
-            <button class="quantity__plus">
+            <button class="quantity__plus" type="button">
               <img
                 src="./images/icon-plus.svg"
                 alt="Plus icon"
@@ -92,7 +125,7 @@
               />
             </button>
           </div>
-          <button class="add-cart-btn">
+          <button class="add-cart-btn" type="button">
             <div class="add-cart-btn__icon-text">
               <img
                 src="./images/icon-cart-white.svg"
@@ -105,5 +138,19 @@
         </div>
       </div>
     </div>
+    <nav class="sidebar mobile hidden">
+      <img
+        src="./images/icon-close.svg"
+        alt="Close icon"
+        class="sidebar__close-icon"
+      />
+      <ul class="sidebar__links">
+        <li><a href="#" class="sidebar__link">Collections</a></li>
+        <li><a href="#" class="sidebar__link"></a>Men</li>
+        <li><a href="#" class="sidebar__link"></a>Women</li>
+        <li><a href="#" class="sidebar__link"></a>About</li>
+        <li><a href="#" class="sidebar__link"></a>Contact</li>
+      </ul>
+    </nav>
   </body>
 </html>
