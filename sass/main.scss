@@ -10,7 +10,7 @@ $color-french-grey: #b6bcc8;
 $color-white-lilac: #f6f8fd;
 $color-lavender-mist: #e4e9f2;
 $color-apricot: #ffab6a;
-$color-black-75: rgb(0, 0, 0, 0.75);
+$color-black-12: rgb(0, 0, 0, 0.12);
 
 // ********** FONT-FAMILY ***********
 $font-primary: "Kumbh Sans", sans-serif;
@@ -35,6 +35,8 @@ html {
 body {
   background: $color-white;
   font-family: $font-primary;
+  position: relative;
+  overflow-x: hidden;
 }
 
 img,
@@ -236,6 +238,40 @@ svg {
   height: 100%;
   width: 25rem;
   background: $color-white;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+
+  ::before {
+    content: "";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 25rem;
+    width: 100vw;
+    height: 100%;
+    background: $color-black-12;
+  }
+
+  &__close-icon {
+    margin: 2.478rem 0 5.378rem 2.528rem;
+  }
+
+  &__links {
+    margin-left: 2.5rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__link:link,
+  &__link:visited {
+    text-decoration: none;
+    color: $color-dark-jungle-green;
+    font-size: 1.8rem;
+    font-weight: $font-weight-bold;
+    line-height: 2.6rem;
+  }
 }
 
 // *** CLASS USED WITH JAVASCRIPT ***

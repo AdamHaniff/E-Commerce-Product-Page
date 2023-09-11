@@ -14,6 +14,8 @@ html {
 body {
   background: #fff;
   font-family: "Kumbh Sans", sans-serif;
+  position: relative;
+  overflow-x: hidden;
 }
 
 img,
@@ -185,6 +187,35 @@ svg {
   height: 100%;
   width: 25rem;
   background: #fff;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+.sidebar ::before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 25rem;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.12);
+}
+.sidebar__close-icon {
+  margin: 2.478rem 0 5.378rem 2.528rem;
+}
+.sidebar__links {
+  margin-left: 2.5rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.sidebar__link:link, .sidebar__link:visited {
+  text-decoration: none;
+  color: #1d2026;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.6rem;
 }
 
 .hidden {
