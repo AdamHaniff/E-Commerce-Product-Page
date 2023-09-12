@@ -44,6 +44,18 @@ svg {
   display: block;
 }
 
+// ************* MIXINS *************
+@mixin orange-btn-styles {
+  height: 5.6rem;
+  border-radius: 1rem;
+  background: $color-pumpkin-orange;
+  border: none;
+  color: $color-white;
+  font-size: 1.6rem;
+  font-weight: $font-weight-bold;
+  font-family: inherit;
+}
+
 // ********* MOBILE LAYOUTS *********
 
 // ************* HEADER *************
@@ -79,6 +91,9 @@ svg {
 }
 
 // ********* GALLERY-PRODUCT ********
+.gallery-product {
+  position: relative;
+}
 
 // ************* GALLERY ************
 .gallery {
@@ -212,14 +227,8 @@ svg {
 
 // ********** ADD-CART-BTN **********
 .add-cart-btn {
-  height: 5.6rem;
-  border-radius: 1rem;
-  background: $color-pumpkin-orange;
+  @include orange-btn-styles;
   box-shadow: 0px 20px 50px -20px #ff7e1b;
-  border: none;
-  color: $color-white;
-  font-size: 1.6rem;
-  font-weight: $font-weight-bold;
 
   &__icon-text {
     display: flex;
@@ -271,6 +280,77 @@ svg {
     font-size: 1.8rem;
     font-weight: $font-weight-bold;
     line-height: 2.6rem;
+  }
+}
+
+// ************** CART **************
+.cart {
+  max-width: 36rem;
+  border-radius: 1rem;
+  background: $color-white;
+  box-shadow: 0 2rem 5rem -2rem rgba(29, 32, 38, 0.5);
+  position: absolute;
+  top: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+
+  &__text {
+    color: $color-dark-jungle-green;
+    font-size: 1.6rem;
+    font-weight: $font-weight-bold;
+    padding: 2.4rem 30.2rem 2.7rem 2.4rem;
+  }
+
+  &__line {
+    border: 1px solid $color-lavender-mist;
+  }
+
+  &__empty {
+    color: $color-mist-blue;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: $font-weight-bold;
+    line-height: 2.6rem;
+    padding: 7.7rem 0 8.5rem 0;
+  }
+
+  &__full {
+    padding: 2.4rem 2.4rem 3.2rem;
+    font-size: 1.6rem;
+    color: $color-mist-blue;
+    line-height: 2.6rem;
+  }
+
+  &__thumbnail-description-delete {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.6rem;
+  }
+
+  &__thumbnail {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 0.4rem;
+    margin-right: 1.6rem;
+  }
+
+  &__description {
+    margin-right: auto;
+  }
+
+  &__product-quantity {
+    margin-right: 0.5rem;
+  }
+
+  &__total-price {
+    color: $color-dark-jungle-green;
+    font-weight: $font-weight-bold;
+  }
+
+  &__checkout-btn {
+    @include orange-btn-styles;
+    width: 100%;
   }
 }
 
