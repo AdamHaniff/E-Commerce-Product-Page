@@ -22,11 +22,13 @@
   <body>
     <header class="header mobile">
       <div class="header__menu-logo">
-        <img
-          src="./images/icon-menu.svg"
-          alt="Menu icon"
-          class="header__menu"
-        />
+        <button class="header__menu-btn" type="button">
+          <img
+            src="./images/icon-menu.svg"
+            alt="Menu icon"
+            class="header__menu-icon"
+          />
+        </button>
         <img src="./images/logo.svg" alt="Logo" class="header__logo" />
       </div>
       <div class="header__cart-avatar">
@@ -171,12 +173,14 @@
         </div>
       </div>
     </div>
-    <nav class="sidebar mobile hidden">
-      <img
-        src="./images/icon-close.svg"
-        alt="Close icon"
-        class="sidebar__close-icon"
-      />
+    <nav class="sidebar mobile">
+      <button class="sidebar__close-btn" type="button">
+        <img
+          src="./images/icon-close.svg"
+          alt="Close icon"
+          class="sidebar__close-icon"
+        />
+      </button>
       <ul class="sidebar__links">
         <li><a href="#" class="sidebar__link">Collections</a></li>
         <li><a href="#" class="sidebar__link">Men</a></li>

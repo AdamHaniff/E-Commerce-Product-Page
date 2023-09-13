@@ -70,7 +70,12 @@ svg {
     gap: 1.6rem;
   }
 
-  &__menu {
+  &__menu-btn {
+    border: none;
+    background: $color-white;
+  }
+
+  &__menu-icon {
     transform: translateY(0.051rem);
   }
 
@@ -82,6 +87,26 @@ svg {
     display: flex;
     align-items: center;
     gap: 2.2rem;
+  }
+
+  &__cart-container {
+    position: relative;
+  }
+
+  &__cart-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -0.5rem;
+    right: -0.6rem;
+    border-radius: 0.65rem;
+    background: $color-pumpkin-orange;
+    width: 1.9rem;
+    height: 1.3rem;
+    color: $color-white;
+    font-size: 1rem;
+    font-weight: $font-weight-bold;
   }
 
   &__avatar {
@@ -248,7 +273,9 @@ svg {
   width: 25rem;
   background: $color-white;
   transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
 
   ::before {
     content: "";
@@ -261,7 +288,9 @@ svg {
     background: $color-black-12;
   }
 
-  &__close-icon {
+  &__close-btn {
+    border: none;
+    background: $color-white;
     margin: 2.478rem 0 5.378rem 2.528rem;
   }
 
@@ -354,7 +383,13 @@ svg {
   }
 }
 
-// *** CLASS USED WITH JAVASCRIPT ***
+// ** CLASSES USED WITH JAVASCRIPT **
 .hidden {
   display: none;
+}
+
+.sidebar--open {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
