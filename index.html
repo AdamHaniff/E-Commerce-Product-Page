@@ -17,7 +17,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/main.css" />
-    <script type="module" defer src="./main.js"></script>
+    <script type="module" defer src="./js/sidebar.js"></script>
+    <script type="module" defer src="./js/main.js"></script>
   </head>
   <body>
     <header class="header mobile">
@@ -86,13 +87,28 @@
         </div>
       </div>
       <div class="gallery mobile">
-        <figure class="gallery__img-container">
+        <div class="gallery__images">
           <img
             src="./images/image-product-1.jpg"
             alt="Sneaker image"
-            class="gallery__current-img"
+            class="gallery__img"
           />
-        </figure>
+          <img
+            src="./images/image-product-2.jpg"
+            alt="Sneaker image"
+            class="gallery__img"
+          />
+          <img
+            src="./images/image-product-3.jpg"
+            alt="Sneaker image"
+            class="gallery__img"
+          />
+          <img
+            src="./images/image-product-4.jpg"
+            alt="Sneaker image"
+            class="gallery__img"
+          />
+        </div>
         <button class="gallery__previous-btn gallery-btn" type="button">
           <svg
             class="gallery__previous-icon"
