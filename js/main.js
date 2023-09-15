@@ -2,34 +2,70 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 // VARIABLES
-const imagesContainer = document.querySelector(".gallery__images");
-const images = document.querySelectorAll(".gallery__img");
-const previousBtn = document.querySelector(".gallery__previous-btn");
-const nextBtn = document.querySelector(".gallery__next-btn");
+const quantityPlusBtn = document.querySelector(".quantity__plus");
+const quantityMinusBtn = document.querySelector(".quantity__minus");
+const quantityNumber = document.querySelector(".quantity__number");
+const addToCartBtn = document.querySelector(".add-cart-btn");
+const quantityContainer = document.querySelector(".quantity");
+const headerCartQuantity = document.querySelector(".header__cart-quantity");
 
-// Initialize the current image index
-let currentIndex = 0;
+// Initialize 'quantity' with a value of 0
+let quantity = 0;
 
-// Function to update the displayed image with a sliding transition
-function updateImage() {
-  const translateX = -currentIndex * 100;
-  imagesContainer.style.transform = `translateX(${translateX}%)`;
+// FUNCTIONS
+function makeElementShake(element) {
+  element.classList.add("shake");
+
+  // Remove 'shake' class after animation ends
+  element.addEventListener("animationend", function () {
+    element.classList.remove("shake");
+  });
 }
 
-// Event listener for the "previous" button
-previousBtn.addEventListener("click", function (e) {
-  const previousBtn = e.target.closest(".gallery__previous-btn");
-  if (!previousBtn) return;
+// EVENT LISTENERS
+quantityPlusBtn.addEventListener("click", function (e) {
+  const quantityPlusBtn = e.target.closest(".quantity__plus");
+  if (!quantityPlusBtn) return;
 
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateImage();
+  // Increase 'quantity' variable
+  quantity++;
+
+  // Update text content of 'quantityNumber'
+  quantityNumber.textContent = quantity;
 });
 
-// Event listener for the "next" button
-nextBtn.addEventListener("click", function (e) {
-  const nextBtn = e.target.closest(".gallery__next-btn");
-  if (!nextBtn) return;
+quantityMinusBtn.addEventListener("click", function (e) {
+  const quantityMinusBtn = e.target.closest(".quantity__minus");
+  if (!quantityMinusBtn) return;
 
-  currentIndex = (currentIndex + 1) % images.length;
-  updateImage();
+  // Do nothing if 'quantity' is 0
+  if (quantity === 0) return;
+
+  // Decrease 'quantity' variable
+  quantity--;
+
+  // Update text content of 'quantityNumber'
+  quantityNumber.textContent = quantity;
+});
+
+addToCartBtn.addEventListener("click", function (e) {
+  const addToCartBtn = e.target.closest(".add-cart-btn");
+  if (!addToCartBtn) return;
+
+  if (quantity === 0) {
+    makeElementShake(quantityContainer);
+    return;
+  }
+
+  // If 'quantity' is more than 0, scroll smoothly to the top of page
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
+  // Make 'headerCartQuantity' visible
+  headerCartQuantity.classList.remove("hidden");
+
+  // Update text content of 'headerCartQuantity' to the value of 'quantity'
+  headerCartQuantity.textContent = quantity;
 });
