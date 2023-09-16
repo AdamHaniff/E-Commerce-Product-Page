@@ -202,6 +202,10 @@ svg {
   font-family: inherit;
   box-shadow: 0px 20px 50px -20px #ff7e1b;
 }
+.add-cart-btn:active {
+  background: #ffab6a;
+  transform: translateY(0.2rem);
+}
 .add-cart-btn__icon-text {
   display: flex;
   align-items: center;
@@ -334,6 +338,10 @@ svg {
   animation-timing-function: ease-in-out;
 }
 
+.pulse {
+  animation: pulse 2s ease infinite;
+}
+
 @keyframes shake {
   0% {
     transform: translateX(0);
@@ -349,5 +357,16 @@ svg {
   }
   100% {
     transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
   }
 }/*# sourceMappingURL=main.css.map */

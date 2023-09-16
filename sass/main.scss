@@ -258,6 +258,11 @@ svg {
   @include orange-btn-styles;
   box-shadow: 0px 20px 50px -20px #ff7e1b;
 
+  &:active {
+    background: $color-apricot;
+    transform: translateY(0.2rem);
+  }
+
   &__icon-text {
     display: flex;
     align-items: center;
@@ -402,7 +407,11 @@ svg {
   animation-timing-function: ease-in-out;
 }
 
-// ************ ANIMATION ***********
+.pulse {
+  animation: pulse 2s ease infinite;
+}
+
+// *********** ANIMATIONS **********
 @keyframes shake {
   0% {
     transform: translateX(0);
@@ -422,5 +431,19 @@ svg {
 
   100% {
     transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
