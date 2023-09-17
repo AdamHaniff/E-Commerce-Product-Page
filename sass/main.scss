@@ -93,6 +93,10 @@ svg {
     position: relative;
   }
 
+  &__cart-container.pulse svg path {
+    animation: colorChange 2s ease infinite;
+  }
+
   &__cart-quantity {
     display: flex;
     justify-content: center;
@@ -445,5 +449,19 @@ svg {
 
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    fill: $color-mist-blue;
+  }
+
+  50% {
+    fill: $color-dark-jungle-green;
+  }
+
+  100% {
+    fill: $color-mist-blue;
   }
 }

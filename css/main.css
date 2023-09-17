@@ -51,6 +51,9 @@ svg {
 .header__cart-container {
   position: relative;
 }
+.header__cart-container.pulse svg path {
+  animation: colorChange 2s ease infinite;
+}
 .header__cart-quantity {
   display: flex;
   justify-content: center;
@@ -368,5 +371,16 @@ svg {
   }
   100% {
     transform: scale(1);
+  }
+}
+@keyframes colorChange {
+  0% {
+    fill: #69707d;
+  }
+  50% {
+    fill: #1d2026;
+  }
+  100% {
+    fill: #69707d;
   }
 }/*# sourceMappingURL=main.css.map */

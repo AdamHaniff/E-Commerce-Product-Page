@@ -68,24 +68,24 @@ function handleQuantityMinusBtnClick(e) {
   quantityNumber.textContent = quantity;
 }
 
-// EVENT LISTENERS
-quantityPlusBtn.addEventListener("click", handleQuantityPlusBtnClick);
-quantityMinusBtn.addEventListener("click", handleQuantityMinusBtnClick);
-
-addToCartBtn.addEventListener("click", function (e) {
+function handleAddToCartBtnClick(e) {
   const addToCartBtn = e.target.closest(".add-cart-btn");
   if (!addToCartBtn) return;
 
   if (quantity === 0) {
-    makeQuantityContainerShake(quantityContainer);
+    makeQuantityContainerShake();
     return;
   }
 
-  // If 'quantity' is more than 0, scroll smoothly to the top of page
+  // If 'quantity' is more than 0, scroll smoothly to the top of page and display 'headerCartQuantity'
   scrollToTopOfPage();
-
   displayHeaderCartQuantity();
 
-  // Make 'headerCartContainer' pulse
+  // Make 'headerCartContainer' pulse and give cart icon a color change animation
   headerCartContainer.classList.add("pulse");
-});
+}
+
+// EVENT LISTENERS
+quantityPlusBtn.addEventListener("click", handleQuantityPlusBtnClick);
+quantityMinusBtn.addEventListener("click", handleQuantityMinusBtnClick);
+addToCartBtn.addEventListener("click", handleAddToCartBtnClick);
