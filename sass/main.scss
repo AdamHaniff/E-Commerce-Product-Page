@@ -89,12 +89,19 @@ svg {
     gap: 2.2rem;
   }
 
-  &__cart-container {
+  &__cart-btn {
+    display: block;
     position: relative;
+    border: none;
+    background: inherit;
   }
 
-  &__cart-container.pulse svg path {
+  &__cart-btn.pulse svg path {
     animation: colorChange 2s ease infinite;
+  }
+
+  &__cart-btn.clicked svg path {
+    fill: $color-dark-jungle-green;
   }
 
   &__cart-quantity {
@@ -389,9 +396,20 @@ svg {
     font-weight: $font-weight-bold;
   }
 
+  &__delete-btn {
+    display: block;
+    border: none;
+    background: inherit;
+  }
+
   &__checkout-btn {
     @include orange-btn-styles;
     width: 100%;
+
+    &:active {
+      background: $color-apricot;
+      transform: translateY(0.2rem);
+    }
   }
 }
 

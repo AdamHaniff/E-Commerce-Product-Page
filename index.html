@@ -34,9 +34,9 @@
         <img src="./images/logo.svg" alt="Logo" class="header__logo" />
       </div>
       <div class="header__cart-avatar">
-        <figure class="header__cart-container">
+        <button class="header__cart-btn" type="button">
           <svg
-            class="header__cart"
+            class="header__cart-icon"
             width="22"
             height="20"
             xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +48,7 @@
             />
           </svg>
           <span class="header__cart-quantity hidden">3</span>
-        </figure>
+        </button>
         <img
           src="./images/image-avatar.png"
           alt="Avatar image"
@@ -78,11 +78,13 @@
                 <span class="cart__total-price">$375.00</span>
               </div>
             </div>
-            <img
-              src="./images/icon-delete.svg"
-              alt="Delete icon"
-              class="cart__delete-icon"
-            />
+            <button class="cart__delete-btn" type="button">
+              <img
+                src="./images/icon-delete.svg"
+                alt="Delete icon"
+                class="cart__delete-icon"
+              />
+            </button>
           </div>
           <button class="cart__checkout-btn" type="button">Checkout</button>
         </div>

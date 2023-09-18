@@ -48,11 +48,17 @@ svg {
   align-items: center;
   gap: 2.2rem;
 }
-.header__cart-container {
+.header__cart-btn {
+  display: block;
   position: relative;
+  border: none;
+  background: inherit;
 }
-.header__cart-container.pulse svg path {
+.header__cart-btn.pulse svg path {
   animation: colorChange 2s ease infinite;
+}
+.header__cart-btn.clicked svg path {
+  fill: #1d2026;
 }
 .header__cart-quantity {
   display: flex;
@@ -314,6 +320,11 @@ svg {
   color: #1d2026;
   font-weight: 700;
 }
+.cart__delete-btn {
+  display: block;
+  border: none;
+  background: inherit;
+}
 .cart__checkout-btn {
   height: 5.6rem;
   border-radius: 1rem;
@@ -324,6 +335,10 @@ svg {
   font-weight: 700;
   font-family: inherit;
   width: 100%;
+}
+.cart__checkout-btn:active {
+  background: #ffab6a;
+  transform: translateY(0.2rem);
 }
 
 .hidden {
