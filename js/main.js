@@ -24,7 +24,6 @@ let totalCartQuantity = 0;
 function makeQuantityContainerShake() {
   quantityContainer.classList.add("shake");
 
-  // Remove 'shake' class after animation ends
   quantityContainer.addEventListener("animationend", function () {
     quantityContainer.classList.remove("shake");
   });
@@ -38,14 +37,52 @@ function scrollToTopOfPage() {
 }
 
 function displayHeaderCartQuantity() {
-  // Update value of 'totalCartQuantity'
   totalCartQuantity += quantity;
-
-  // Update text content of 'headerCartQuantity' to the value of 'totalCartQuantity'
   headerCartQuantity.textContent = totalCartQuantity;
-
-  // Make 'headerCartQuantity' visible
   headerCartQuantity.classList.remove("hidden");
+}
+
+function isHeaderCartBtnClicked() {
+  // If 'headerCartBtn' has already been clicked
+  if (headerCartBtn.classList.contains("clicked")) {
+    if (totalCartQuantity === 0) {
+      // Change cart icon back to gray
+      headerCartBtn.classList.remove("clicked");
+    }
+
+    if (totalCartQuantity > 0) {
+      headerCartBtn.classList.remove("clicked");
+      headerCartBtn.classList.add("pulse");
+    }
+
+    // Hide the cart
+    cart.classList.add("hidden");
+
+    return true;
+  }
+}
+
+function showCartTotalPrice() {
+  const totalPrice = `$${(125 * totalCartQuantity).toFixed(2)}`;
+  cartQuantity.textContent = totalCartQuantity;
+  cartTotalPrice.textContent = totalPrice;
+}
+
+function showCartFullContainer() {
+  // Show the user what is in their cart
+  cartEmptyContainer.classList.add("hidden");
+  cartFullContainer.classList.remove("hidden");
+}
+
+function showCartEmptyContainer() {
+  // Show the user their cart is empty
+  cartFullContainer.classList.add("hidden");
+  cartEmptyContainer.classList.remove("hidden");
+}
+
+function resetQuantity() {
+  quantity = 0;
+  quantityNumber.textContent = quantity;
 }
 
 // EVENT LISTENER CALLBACK FUNCTIONS
@@ -53,10 +90,7 @@ function handleQuantityPlusBtnClick(e) {
   const quantityPlusBtn = e.target.closest(".quantity__plus");
   if (!quantityPlusBtn) return;
 
-  // Increase 'quantity' variable
   quantity++;
-
-  // Update text content of 'quantityNumber'
   quantityNumber.textContent = quantity;
 }
 
@@ -64,13 +98,12 @@ function handleQuantityMinusBtnClick(e) {
   const quantityMinusBtn = e.target.closest(".quantity__minus");
   if (!quantityMinusBtn) return;
 
-  // Do nothing if 'quantity' is 0
-  if (quantity === 0) return;
+  if (quantity === 0) {
+    makeQuantityContainerShake();
+    return;
+  }
 
-  // Decrease 'quantity' variable
   quantity--;
-
-  // Update text content of 'quantityNumber'
   quantityNumber.textContent = quantity;
 }
 
@@ -83,32 +116,26 @@ function handleAddToCartBtnClick(e) {
     return;
   }
 
-  // If 'quantity' is more than 0, scroll smoothly to the top of page and display 'headerCartQuantity'
+  // If 'quantity' is more than 0, scroll smoothly to the top of page, display 'headerCartQuantity, and reset 'quantity'.
   scrollToTopOfPage();
   displayHeaderCartQuantity();
+  resetQuantity();
+
+  // Check if the cart is already open
+  if (!cart.classList.contains("hidden")) {
+    showCartTotalPrice();
+    return;
+  }
 
   // Make 'headerCartBtn' pulse and give cart icon a color change animation
   headerCartBtn.classList.add("pulse");
 }
 
-// EVENT LISTENERS
-quantityPlusBtn.addEventListener("click", handleQuantityPlusBtnClick);
-quantityMinusBtn.addEventListener("click", handleQuantityMinusBtnClick);
-addToCartBtn.addEventListener("click", handleAddToCartBtnClick);
-
-headerCartBtn.addEventListener("click", function (e) {
+function handleHeaderCartBtnClick(e) {
   const headerCartBtn = e.target.closest(".header__cart-btn");
   if (!headerCartBtn) return;
 
-  // If 'headerCartBtn' has already been clicked
-  if (headerCartBtn.classList.contains("clicked")) {
-    // Change cart icon back to gray
-    headerCartBtn.classList.remove("clicked");
-
-    // Hide the cart
-    cart.classList.add("hidden");
-    return;
-  }
+  if (isHeaderCartBtnClicked()) return;
 
   // Check if the cart is empty or not
   if (totalCartQuantity === 0) {
@@ -127,13 +154,25 @@ headerCartBtn.addEventListener("click", function (e) {
     // Display the cart
     cart.classList.remove("hidden");
 
-    // Update text content of 'cartQuantity' and 'cartTotalPrice'
-    const totalPrice = `$${(125 * totalCartQuantity).toFixed(2)}`;
-    cartQuantity.textContent = totalCartQuantity;
-    cartTotalPrice.textContent = totalPrice;
-
-    // Show the user what is in their cart
-    cartEmptyContainer.classList.add("hidden");
-    cartFullContainer.classList.remove("hidden");
+    // Calculate the total price and display the 'cartFullContainer'
+    showCartTotalPrice();
+    showCartFullContainer();
   }
-});
+}
+
+function handleCartDeleteBtnClick(e) {
+  const cartDeleteBtn = e.target.closest(".cart__delete-btn");
+  if (!cartDeleteBtn) return;
+
+  totalCartQuantity = 0;
+
+  headerCartQuantity.classList.add("hidden");
+  showCartEmptyContainer();
+}
+
+// EVENT LISTENERS
+quantityPlusBtn.addEventListener("click", handleQuantityPlusBtnClick);
+quantityMinusBtn.addEventListener("click", handleQuantityMinusBtnClick);
+addToCartBtn.addEventListener("click", handleAddToCartBtnClick);
+headerCartBtn.addEventListener("click", handleHeaderCartBtnClick);
+cartDeleteBtn.addEventListener("click", handleCartDeleteBtnClick);
