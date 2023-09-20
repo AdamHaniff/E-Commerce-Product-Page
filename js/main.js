@@ -85,6 +85,19 @@ function resetQuantity() {
   quantityNumber.textContent = quantity;
 }
 
+function isCartOpen() {
+  // Check if the cart is already open
+  if (!cart.classList.contains("hidden")) {
+    // Check if 'cartEmptyContainer' is being displayed
+    if (!cartEmptyContainer.classList.contains("hidden")) {
+      showCartFullContainer();
+    }
+
+    showCartTotalPrice();
+    return true;
+  }
+}
+
 // EVENT LISTENER CALLBACK FUNCTIONS
 function handleQuantityPlusBtnClick(e) {
   const quantityPlusBtn = e.target.closest(".quantity__plus");
@@ -121,11 +134,8 @@ function handleAddToCartBtnClick(e) {
   displayHeaderCartQuantity();
   resetQuantity();
 
-  // Check if the cart is already open
-  if (!cart.classList.contains("hidden")) {
-    showCartTotalPrice();
-    return;
-  }
+  // Check if the cart is currently open
+  if (isCartOpen()) return;
 
   // Make 'headerCartBtn' pulse and give cart icon a color change animation
   headerCartBtn.classList.add("pulse");
