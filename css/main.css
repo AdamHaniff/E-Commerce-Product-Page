@@ -19,10 +19,50 @@ body {
 }
 
 img,
-svg {
+svg,
+button {
   display: block;
 }
 
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-0.5rem);
+  }
+  50% {
+    transform: translateX(0.5rem);
+  }
+  75% {
+    transform: translateX(-0.5rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes colorChange {
+  0% {
+    fill: #69707d;
+  }
+  50% {
+    fill: #1d2026;
+  }
+  100% {
+    fill: #69707d;
+  }
+}
 .header {
   padding: 1.9rem 2.4rem 2.5rem;
   display: flex;
@@ -49,7 +89,6 @@ svg {
   gap: 2.2rem;
 }
 .header__cart-btn {
-  display: block;
   position: relative;
   border: none;
   background: inherit;
@@ -326,7 +365,6 @@ svg {
   font-weight: 700;
 }
 .cart__delete-btn {
-  display: block;
   border: none;
   background: inherit;
 }
@@ -346,6 +384,11 @@ svg {
   transform: translateY(0.2rem);
 }
 
+@media only screen and (max-width: 23.4375em) {
+  .header__cart-avatar {
+    gap: 1.6rem;
+  }
+}
 .hidden {
   display: none;
 }
@@ -363,44 +406,4 @@ svg {
 
 .pulse {
   animation: pulse 2s ease infinite;
-}
-
-@keyframes shake {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-0.5rem);
-  }
-  50% {
-    transform: translateX(0.5rem);
-  }
-  75% {
-    transform: translateX(-0.5rem);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes colorChange {
-  0% {
-    fill: #69707d;
-  }
-  50% {
-    fill: #1d2026;
-  }
-  100% {
-    fill: #69707d;
-  }
 }/*# sourceMappingURL=main.css.map */

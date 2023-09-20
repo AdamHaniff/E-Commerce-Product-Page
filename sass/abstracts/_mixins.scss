@@ -1,0 +1,21 @@
+// ************* MIXINS *************
+@mixin orange-btn-styles {
+  height: 5.6rem;
+  border-radius: 1rem;
+  background: $color-pumpkin-orange;
+  border: none;
+  color: $color-white;
+  font-size: 1.6rem;
+  font-weight: $font-weight-bold;
+  font-family: inherit;
+}
+
+@mixin orange-btn-active-styles {
+  background: $color-apricot;
+  transform: translateY(0.2rem);
+}
+
+@mixin small-btn-styles {
+  border: none;
+  background: inherit;
+}

@@ -1,0 +1,19 @@
+// ** CLASSES USED WITH JAVASCRIPT **
+.hidden {
+  display: none;
+}
+
+.sidebar--open {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.shake {
+  animation: shake 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+.pulse {
+  animation: pulse 2s ease infinite;
+}
