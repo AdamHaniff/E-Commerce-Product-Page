@@ -22,9 +22,9 @@
     <script type="module" defer src="./js/main.js"></script>
   </head>
   <body>
-    <header class="header mobile">
+    <header class="header">
       <div class="header__menu-logo">
-        <button class="header__menu-btn" type="button">
+        <button class="header__menu-btn mobile" type="button">
           <img
             src="./images/icon-menu.svg"
             alt="Menu icon"
@@ -33,6 +33,15 @@
         </button>
         <img src="./images/logo.svg" alt="Logo" class="header__logo" />
       </div>
+      <nav class="header__nav desktop">
+        <ul class="header__links">
+          <li><a href="#" class="header__link">Collections</a></li>
+          <li><a href="#" class="header__link">Men</a></li>
+          <li><a href="#" class="header__link">Women</a></li>
+          <li><a href="#" class="header__link">About</a></li>
+          <li><a href="#" class="header__link">Contact</a></li>
+        </ul>
+      </nav>
       <div class="header__cart-avatar">
         <button class="header__cart-btn" type="button">
           <svg
@@ -146,6 +155,48 @@
             />
           </svg>
         </button>
+      </div>
+
+      <div class="gallery desktop">
+        <img
+          src="./images/image-product-1.jpg"
+          alt="Sneaker image"
+          class="gallery__image"
+        />
+        <div class="gallery__thumbnails">
+          <div class="gallery__thumbnail-container">
+            <img
+              src="./images/image-product-1-thumbnail.jpg"
+              alt="Sneaker thumbnail"
+              class="gallery__thumbnail"
+            />
+            <div class="gallery__thumbnail-overlay"></div>
+          </div>
+          <div class="gallery__thumbnail-container">
+            <img
+              src="./images/image-product-2-thumbnail.jpg"
+              alt="Sneaker thumbnail"
+              class="gallery__thumbnail"
+            />
+            <div class="gallery__thumbnail-overlay"></div>
+          </div>
+          <div class="gallery__thumbnail-container">
+            <img
+              src="./images/image-product-3-thumbnail.jpg"
+              alt="Sneaker thumbnail"
+              class="gallery__thumbnail"
+            />
+            <div class="gallery__thumbnail-overlay"></div>
+          </div>
+          <div class="gallery__thumbnail-container">
+            <img
+              src="./images/image-product-4-thumbnail.jpg"
+              alt="Sneaker thumbnail"
+              class="gallery__thumbnail"
+            />
+            <div class="gallery__thumbnail-overlay"></div>
+          </div>
+        </div>
       </div>
 
       <div class="product">

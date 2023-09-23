@@ -70,3 +70,53 @@
     right: 4rem;
   }
 }
+
+// ******* 960px MEDIA QUERY ********
+@media only screen and (min-width: 60em) {
+  .mobile {
+    display: none;
+  }
+
+  // ************ HEADER ************
+  .header {
+    align-items: center;
+
+    &__menu-logo {
+      display: initial;
+      flex: initial;
+      margin-right: 5.65rem;
+    }
+
+    &__logo {
+      margin: initial;
+      transform: initial;
+    }
+
+    &__nav {
+      display: flex;
+      margin-right: auto;
+    }
+
+    &__links {
+      display: flex;
+      gap: 3.2rem;
+      list-style: none;
+    }
+
+    &__link {
+      text-decoration: none;
+      color: $color-mist-blue;
+      font-size: 1.5rem;
+      line-height: 2.6rem;
+    }
+
+    &__cart-avatar {
+      gap: 4.618rem;
+    }
+
+    &__avatar {
+      width: 4.8rem;
+      height: 4.8rem;
+    }
+  }
+}
