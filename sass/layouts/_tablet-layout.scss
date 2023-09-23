@@ -1,0 +1,72 @@
+// ********** TABLET LAYOUT *********
+
+// ******* 768px MEDIA QUERY ********
+@media only screen and (min-width: 48em) {
+  // ************ HEADER ************
+  .header {
+    padding: 2.35rem 4rem 2.95rem;
+  }
+
+  // ************ GALLERY ***********
+  .gallery {
+    &__previous-btn {
+      left: 4rem;
+    }
+
+    &__next-btn {
+      right: 4rem;
+    }
+  }
+
+  // ************ PRODUCT ***********
+  .product {
+    padding: 4rem 4rem 8.8rem;
+
+    &__company {
+      font-size: 1.25rem;
+      letter-spacing: 0.19rem;
+      margin-bottom: 2.3rem;
+    }
+
+    &__name {
+      font-size: 3.6rem;
+      line-height: 4rem;
+      margin-bottom: 2.35rem;
+    }
+
+    &__description {
+      font-size: 1.55rem;
+      line-height: 2.55rem;
+    }
+  }
+
+  // *********** QUANTITY ***********
+  .quantity {
+    width: 50%;
+
+    &-cart {
+      flex-direction: row;
+    }
+  }
+
+  // ********* ADD-CART-BTN *********
+  .add-cart-btn {
+    width: 50%;
+  }
+
+  // ************ SIDEBAR ***********
+  .sidebar {
+    &__close-btn {
+      margin: 2.778rem 0 5.378rem 4rem;
+    }
+
+    &__links {
+      margin-left: 4rem;
+    }
+  }
+
+  // ************* CART *************
+  .cart {
+    right: 4rem;
+  }
+}

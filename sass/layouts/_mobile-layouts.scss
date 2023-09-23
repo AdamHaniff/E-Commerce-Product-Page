@@ -95,18 +95,16 @@
     border: none;
     border-radius: 50%;
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   &__previous-btn {
-    top: 50%;
     left: 1.6rem;
-    transform: translateY(-50%);
   }
 
   &__next-btn {
     right: 1.6rem;
-    top: 50%;
-    transform: translateY(-50%);
   }
 }
 
@@ -227,7 +225,7 @@
   top: 0;
   left: 0;
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   height: 100%;
   width: 25rem;
   background: inherit;
@@ -266,7 +264,7 @@
   &.sidebar--open + &__overlay {
     position: fixed;
     top: 0;
-    z-index: 2;
+    z-index: 3;
     background: $color-black-75;
     width: 100vw;
     height: 100%;
@@ -364,6 +362,13 @@
     }
   }
 
+  // *********** PRODUCT ************
+  .product {
+    &__percent-off {
+      margin-right: auto;
+    }
+  }
+
   // ************* CART *************
   .cart {
     max-width: 96%;
@@ -382,8 +387,8 @@
   }
 }
 
-// ******** 575px MEDIA QUERY *******
-@media only screen and (min-width: 35.9375em) {
+// ******** 475px MEDIA QUERY *******
+@media only screen and (min-width: 29.6875em) {
   // ************ HEADER ************
   .header {
     justify-content: initial;
@@ -396,11 +401,11 @@
       margin: 0 auto;
     }
   }
-}
 
-// ******* 675px MEDIA QUERY ********
-@media only screen and (min-width: 42.1875em) {
-  // ************* CART *************
+  // ************** CART ************
   .cart {
+    left: initial;
+    transform: initial;
+    right: 2.4rem;
   }
 }
