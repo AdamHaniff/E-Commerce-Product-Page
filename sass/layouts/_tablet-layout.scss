@@ -73,15 +73,11 @@
 
 // ******* 960px MEDIA QUERY ********
 @media only screen and (min-width: 60em) {
-  .mobile {
-    display: none;
-  }
-
   // ************ HEADER ************
   .header {
     align-items: center;
     padding: 2.8rem 0 3.5rem;
-    margin: 0 4rem;
+    margin: 0 9rem 9rem;
     position: relative;
 
     &__menu-logo {
@@ -128,5 +124,54 @@
       border: 1px solid $color-lavender-mist;
       width: 100%;
     }
+  }
+
+  // ******* GALLERY-PRODUCT ********
+  .gallery-product {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+    padding: 0 9rem 9rem;
+  }
+
+  // ************ GALLERY ***********
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+
+    &__image {
+      max-width: 44.5rem;
+      max-height: 44.5rem;
+      border-radius: 1.5rem;
+    }
+
+    &__thumbnails {
+      display: flex;
+      gap: 3.1rem;
+    }
+
+    &__thumbnail {
+      max-width: 8.8rem;
+      max-height: 8.8rem;
+      width: 100%;
+      border-radius: 1rem;
+    }
+  }
+
+  // ************ PRODUCT ***********
+  .product {
+    padding: 0;
+    max-width: 44.5rem;
+  }
+
+  // ************** CART ************
+  .cart {
+    right: 9rem;
+    top: -9rem;
+  }
+
+  .mobile {
+    display: none;
   }
 }

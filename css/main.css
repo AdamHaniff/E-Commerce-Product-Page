@@ -464,13 +464,10 @@ button {
   }
 }
 @media only screen and (min-width: 60em) {
-  .mobile {
-    display: none;
-  }
   .header {
     align-items: center;
     padding: 2.8rem 0 3.5rem;
-    margin: 0 4rem;
+    margin: 0 9rem 9rem;
     position: relative;
   }
   .header__menu-logo {
@@ -509,6 +506,43 @@ button {
     bottom: 0;
     border: 1px solid #e4e9f2;
     width: 100%;
+  }
+  .gallery-product {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+    padding: 0 9rem 9rem;
+  }
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+  }
+  .gallery__image {
+    max-width: 44.5rem;
+    max-height: 44.5rem;
+    border-radius: 1.5rem;
+  }
+  .gallery__thumbnails {
+    display: flex;
+    gap: 3.1rem;
+  }
+  .gallery__thumbnail {
+    max-width: 8.8rem;
+    max-height: 8.8rem;
+    width: 100%;
+    border-radius: 1rem;
+  }
+  .product {
+    padding: 0;
+    max-width: 44.5rem;
+  }
+  .cart {
+    right: 9rem;
+    top: -9rem;
+  }
+  .mobile {
+    display: none;
   }
 }
 .hidden {
