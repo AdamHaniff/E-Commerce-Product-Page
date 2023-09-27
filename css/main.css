@@ -517,21 +517,35 @@ button {
     display: flex;
     flex-direction: column;
     gap: 3.2rem;
+    max-width: 44.5rem;
   }
   .gallery__image {
-    max-width: 44.5rem;
-    max-height: 44.5rem;
     border-radius: 1.5rem;
   }
   .gallery__thumbnails {
     display: flex;
     gap: 3.1rem;
   }
-  .gallery__thumbnail {
+  .gallery__thumbnails .gallery__thumbnail-container:first-child {
+    border: 0.2rem solid #ff7e1b;
+  }
+  .gallery__thumbnail-container {
+    border-radius: 1rem;
+    overflow: hidden;
     max-width: 8.8rem;
     max-height: 8.8rem;
+    position: relative;
+  }
+  .gallery__thumbnail {
     width: 100%;
-    border-radius: 1rem;
+    height: 100%;
+  }
+  .gallery__thumbnails .gallery__thumbnail-container:first-child .gallery__thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%);
   }
   .product {
     padding: 0;
