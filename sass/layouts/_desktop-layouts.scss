@@ -1,0 +1,54 @@
+// ******** DESKTOP LAYOUTS *********
+
+// ****** DESKTOP HOVER STATES ******
+// ******* 992px MEDIA QUERY *******
+@media only screen and (min-width: 62em) {
+  // ************ HEADER ***********
+  .header {
+    &__link:hover {
+      color: $color-dark-jungle-green;
+      border-bottom: 0.4rem solid $color-pumpkin-orange;
+      padding-bottom: 5rem;
+    }
+
+    &__cart-btn:hover {
+      cursor: pointer;
+    }
+
+    &__avatar:hover {
+      cursor: pointer;
+      border: 0.2rem solid $color-pumpkin-orange;
+    }
+  }
+
+  // *********** GALLERY ***********
+  .gallery {
+    &__thumbnail-container {
+      cursor: pointer;
+    }
+  }
+
+  // *********** QUANTITY ***********
+  .quantity {
+    &-btn:hover {
+      cursor: pointer;
+    }
+
+    &-btn:hover svg path {
+      fill: $color-apricot;
+    }
+  }
+
+  // ********* ADD-CART-BTN *********
+  .add-cart-btn:hover {
+    cursor: pointer;
+    background: $color-apricot;
+  }
+
+  // ************* CART *************
+  .cart {
+    &__delete-btn:hover {
+      cursor: pointer;
+    }
+  }
+}

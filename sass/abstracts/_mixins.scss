@@ -19,3 +19,24 @@
   border: none;
   background: inherit;
 }
+
+@mixin thumbnails-styles {
+  display: flex;
+  gap: 3.1rem;
+}
+
+@mixin thumbnail-container-styles {
+  border-radius: 1rem;
+  overflow: hidden;
+  max-width: 8.8rem;
+  max-height: 8.8rem;
+  position: relative;
+}
+
+@mixin thumbnail-overlay-styles {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: $color-thumbnail-overlay;
+}
