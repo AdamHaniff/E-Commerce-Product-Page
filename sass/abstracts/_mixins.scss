@@ -8,6 +8,7 @@
   font-size: 1.6rem;
   font-weight: $font-weight-bold;
   font-family: inherit;
+  transition: background 0.3s;
 }
 
 @mixin orange-btn-active-styles {

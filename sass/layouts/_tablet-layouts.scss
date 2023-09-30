@@ -86,7 +86,7 @@
       margin-right: 5.65rem;
     }
 
-    &__logo {
+    &__logo-link {
       margin: initial;
       transform: initial;
     }
@@ -184,10 +184,6 @@
     top: -9rem;
   }
 
-  .mobile {
-    display: none;
-  }
-
   // *********** LIGHTBOX ***********
   .lightbox {
     position: fixed;
@@ -270,5 +266,9 @@
       height: 100%;
       background: $color-black-75;
     }
+  }
+
+  .mobile {
+    display: none;
   }
 }
