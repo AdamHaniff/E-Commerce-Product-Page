@@ -122,6 +122,7 @@
     }
 
     &__line {
+      display: block;
       position: absolute;
       bottom: 0;
       border: 1px solid $color-lavender-mist;
@@ -154,10 +155,6 @@
       @include thumbnails-styles;
     }
 
-    &__thumbnails &__thumbnail-container:first-child {
-      border: 0.2rem solid $color-pumpkin-orange;
-    }
-
     &__thumbnail-container {
       @include thumbnail-container-styles;
     }
@@ -167,7 +164,7 @@
       height: 100%;
     }
 
-    &__thumbnails &__thumbnail-container:first-child &__thumbnail-overlay {
+    &__thumbnail-container.container-hovered &__thumbnail-overlay {
       @include thumbnail-overlay-styles;
     }
   }

@@ -17,3 +17,7 @@
 .pulse {
   animation: pulse 2s ease infinite;
 }
+
+.container-hovered {
+  border: 0.2rem solid $color-pumpkin-orange;
+}
