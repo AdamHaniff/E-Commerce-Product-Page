@@ -21,3 +21,8 @@
 .container-hovered {
   border: 0.2rem solid $color-pumpkin-orange;
 }
+
+.lightbox--open {
+  opacity: 1;
+  visibility: visible;
+}
