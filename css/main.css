@@ -578,6 +578,7 @@ button {
     transition: all 0.3s ease-in-out;
   }
   .lightbox__content {
+    width: 55rem;
     z-index: 999;
     display: flex;
     flex-direction: column;
@@ -593,11 +594,12 @@ button {
     margin-left: auto;
     margin-bottom: 2.4rem;
   }
+  .lightbox__images-container {
+    overflow: hidden;
+  }
   .lightbox__images {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 55rem;
-    overflow: hidden;
   }
   .lightbox__img {
     width: 100%;

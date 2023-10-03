@@ -196,6 +196,7 @@
     transition: all 0.3s ease-in-out;
 
     &__content {
+      width: 55rem;
       z-index: 999;
       display: flex;
       flex-direction: column;
@@ -214,11 +215,13 @@
       margin-bottom: 2.4rem;
     }
 
+    &__images-container {
+      overflow: hidden;
+    }
+
     &__images {
       display: flex;
       transition: transform 0.5s ease-in-out;
-      width: 55rem;
-      overflow: hidden;
     }
 
     &__img {
