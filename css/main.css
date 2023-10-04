@@ -541,6 +541,7 @@ button {
   .gallery__thumbnail-container {
     border-radius: 1rem;
     overflow: hidden;
+    width: 25%;
     max-width: 8.8rem;
     max-height: 8.8rem;
     position: relative;
@@ -629,6 +630,7 @@ button {
   .lightbox__thumbnail-container {
     border-radius: 1rem;
     overflow: hidden;
+    width: 25%;
     max-width: 8.8rem;
     max-height: 8.8rem;
     position: relative;

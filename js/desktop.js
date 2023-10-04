@@ -1,3 +1,5 @@
+import updateImage from "./imageUtils";
+
 // VARIABLES
 const galleryImage = document.querySelector(".gallery__image");
 const galleryThumbnails = document.querySelector(".gallery__thumbnails");
@@ -29,7 +31,7 @@ function handleThumbnailHover(target) {
 
   // Change gallery image to the image that is currently being hovered in the thumbnail container
   const thumbnailImage = target.querySelector(".gallery__thumbnail");
-  galleryImage.src = thumbnailImage.src;
+  galleryImage.src = thumbnailImage.dataset.fullImage;
 }
 
 function handleThumbnailClick() {
@@ -60,6 +62,42 @@ function handleGalleryEvent(e, eventType) {
   }
 }
 
+// GALLERY EVENT LISTENERS
+galleryThumbnails.addEventListener("mouseover", (e) =>
+  handleGalleryEvent(e, "hover")
+);
+
+galleryThumbnails.addEventListener("click", (e) =>
+  handleGalleryEvent(e, "click")
+);
+
+// CODE FOR LIGHTBOX
+
+// Initialize the current image index
+let currentIndex = 0;
+
+function handlePreviousBtnClick(e) {
+  currentIndex = updateImage(
+    lightboxImagesContainer,
+    lightboxImages,
+    currentIndex,
+    e,
+    ".lightbox__previous-btn",
+    ".lightbox__next-btn"
+  );
+}
+
+function handleNextBtnClick(e) {
+  currentIndex = updateImage(
+    lightboxImagesContainer,
+    lightboxImages,
+    currentIndex,
+    e,
+    ".lightbox__previous-btn",
+    ".lightbox__next-btn"
+  );
+}
+
 function handleLightboxCloseBtnClick(e) {
   const lightboxCloseBtn = e.target.closest(".lightbox__close-btn");
   if (!lightboxCloseBtn) return;
@@ -69,43 +107,6 @@ function handleLightboxCloseBtnClick(e) {
 }
 
 // EVENT LISTENERS
-galleryThumbnails.addEventListener("mouseover", (e) =>
-  handleGalleryEvent(e, "hover")
-);
-
-galleryThumbnails.addEventListener("click", (e) =>
-  handleGalleryEvent(e, "click")
-);
-
-// Initialize the current image index
-let currentIndex = 0;
-
-// Function to update the displayed image with a sliding transition
-function updateImage() {
-  const translateX = -currentIndex * 100;
-  lightboxImagesContainer.style.transform = `translateX(${translateX}%)`;
-}
-
-// EVENT LISTENER CALLBACK FUNCTIONS
-function handlePreviousBtnClick(e) {
-  const previousBtn = e.target.closest(".lightbox__previous-btn");
-  if (!previousBtn) return;
-
-  currentIndex =
-    (currentIndex - 1 + lightboxImages.length) % lightboxImages.length;
-  updateImage();
-}
-
-function handleNextBtnClick(e) {
-  const nextBtn = e.target.closest(".lightbox__next-btn");
-  if (!nextBtn) return;
-
-  currentIndex = (currentIndex + 1) % lightboxImages.length;
-  updateImage();
-}
-
-// EVENT LISTENERS
 previousBtn.addEventListener("click", handlePreviousBtnClick);
 nextBtn.addEventListener("click", handleNextBtnClick);
-
 lightboxCloseBtn.addEventListener("click", handleLightboxCloseBtnClick);
