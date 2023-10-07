@@ -11,10 +11,15 @@ $color-white-lilac: #f6f8fd;
 $color-lavender-mist: #e4e9f2;
 $color-apricot: #ffab6a;
 $color-black-75: rgb(0, 0, 0, 0.75);
-$color-thumbnail-overlay: linear-gradient(
+$color-thumbnail-overlay-clicked: linear-gradient(
   0deg,
   rgba(255, 255, 255, 0.75) 0%,
   rgba(255, 255, 255, 0.75) 100%
+);
+$color-thumbnail-overlay-hovered: linear-gradient(
+  0deg,
+  rgba(255, 255, 255, 0.5) 0%,
+  rgba(255, 255, 255, 0.5) 100%
 );
 
 // ********** FONT-FAMILY ***********

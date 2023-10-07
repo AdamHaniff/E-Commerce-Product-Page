@@ -160,12 +160,16 @@
     }
 
     &__thumbnail {
-      width: 100%;
-      height: 100%;
+      width: 8.8rem;
+      height: 8.8rem;
     }
 
-    &__thumbnail-container.container-hovered &__thumbnail-overlay {
-      @include thumbnail-overlay-styles;
+    &__thumbnail-container:hover &__thumbnail-overlay {
+      @include thumbnail-overlay-styles($color-thumbnail-overlay-hovered);
+    }
+
+    &__thumbnail-container.container-clicked &__thumbnail-overlay {
+      @include thumbnail-overlay-styles($color-thumbnail-overlay-clicked);
     }
   }
 
@@ -221,7 +225,6 @@
 
     &__images {
       display: flex;
-      // transition: transform 0.5s ease-in-out;
     }
 
     &__img {
@@ -259,12 +262,16 @@
     }
 
     &__thumbnail {
-      width: 100%;
-      height: 100%;
+      width: 8.8rem;
+      height: 8.8rem;
     }
 
-    &__thumbnails &__thumbnail-container:first-child &__thumbnail-overlay {
-      @include thumbnail-overlay-styles;
+    &__thumbnail-container:hover &__thumbnail-overlay {
+      @include thumbnail-overlay-styles($color-thumbnail-overlay-hovered);
+    }
+
+    &__thumbnail-container.container-clicked &__thumbnail-overlay {
+      @include thumbnail-overlay-styles($color-thumbnail-overlay-clicked);
     }
 
     &__overlay {

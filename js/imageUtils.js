@@ -22,6 +22,8 @@ function updateImage(
     currentImageIndex = (currentImageIndex + 1) % images.length;
   }
 
+  // Add a transition animation and translate the image
+  imagesContainer.classList.add("transition");
   translateImage(currentImageIndex, imagesContainer);
 
   return currentImageIndex;

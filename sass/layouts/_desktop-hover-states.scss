@@ -22,7 +22,8 @@
 
   // *********** GALLERY ***********
   .gallery {
-    &__thumbnail-container {
+    &__image:hover,
+    &__thumbnail-container:hover {
       cursor: pointer;
     }
   }

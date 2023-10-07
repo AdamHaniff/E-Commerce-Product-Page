@@ -18,11 +18,15 @@
   animation: pulse 2s ease infinite;
 }
 
-.container-hovered {
+.container-clicked {
   border: 0.2rem solid $color-pumpkin-orange;
 }
 
 .lightbox--open {
   opacity: 1;
   visibility: visible;
+}
+
+.transition {
+  transition: transform 0.5s ease-in-out;
 }

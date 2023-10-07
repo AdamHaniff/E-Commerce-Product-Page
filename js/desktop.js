@@ -16,34 +16,10 @@ const nextBtn = document.querySelector(".lightbox__next-btn");
 // Initialize the current image index
 let currentImageIndex = 0;
 
-// FUNCTIONS
-function handleThumbnailHover(target) {
-  // If container that is currently being hovered already contains the 'container-hovered' class, then do nothing
-  if (target.classList.contains("container-hovered")) return;
-
-  // Container that is currently being hovered does not contain the 'container-hovered' class
-  galleryThumbnailContainers.forEach((container) => {
-    // Remove 'container-hovered' class from previously-hovered container
-    if (container.classList.contains("container-hovered")) {
-      container.classList.remove("container-hovered");
-    }
-  });
-
-  // Add 'container-hovered' class to currently hovered container
-  target.classList.add("container-hovered");
-
-  // Change gallery image to the image that is currently being hovered in the thumbnail container
-  const thumbnailImage = target.querySelector(".gallery__thumbnail");
-  galleryImage.src = thumbnailImage.dataset.fullImage;
-}
-
-function handleThumbnailClick(target) {
-  // Find which thumbnail container was clicked
-  const thumbnailContainer = target;
-
-  // Make lighbox image the same image that was clicked in the thumbnail container
+function handleGalleryImageClick() {
+  // Make lightbox image the same image that was clicked in the thumbnail container
   galleryThumbnailContainers.forEach((container, index) => {
-    if (container === thumbnailContainer) {
+    if (container.classList.contains("container-clicked")) {
       currentImageIndex = index;
       translateImage(currentImageIndex, lightboxImagesContainer);
     }
@@ -53,9 +29,8 @@ function handleThumbnailClick(target) {
   lightbox.classList.add("lightbox--open");
 }
 
-// EVENT LISTENER CALLBACK FUNCTIONS
-function handleGalleryEvent(e, eventType) {
-  // Check if the event target is 'galleryThumbnails'
+function handleThumbnailClick(e) {
+  // Check if event target is 'galleryThumbnails'
   if (e.target === this) return;
 
   // Check if the event target or its parent has the class 'gallery__thumbnail-container'
@@ -63,11 +38,23 @@ function handleGalleryEvent(e, eventType) {
 
   while (target && target !== this) {
     if (target.classList.contains("gallery__thumbnail-container")) {
-      if (eventType === "hover") {
-        handleThumbnailHover(target);
-      } else if (eventType === "click") {
-        handleThumbnailClick(target);
-      }
+      // If container already has 'container-clicked' class, then do nothing
+      if (target.classList.contains("container-clicked")) return;
+
+      // Remove 'container-clicked' class from previously-clicked container
+      galleryThumbnailContainers.forEach((container) => {
+        if (container.classList.contains("container-clicked")) {
+          container.classList.remove("container-clicked");
+        }
+      });
+
+      // Add 'container-clicked' class to the container that was just clicked
+      target.classList.add("container-clicked");
+
+      // Change gallery image to the thumbnail image that was clicked
+      const thumbnailImage = target.querySelector(".gallery__thumbnail");
+      galleryImage.src = thumbnailImage.dataset.fullImage;
+
       return;
     }
 
@@ -77,13 +64,8 @@ function handleGalleryEvent(e, eventType) {
 }
 
 // GALLERY EVENT LISTENERS
-galleryThumbnails.addEventListener("mouseover", (e) =>
-  handleGalleryEvent(e, "hover")
-);
-
-galleryThumbnails.addEventListener("click", (e) =>
-  handleGalleryEvent(e, "click")
-);
+galleryImage.addEventListener("click", handleGalleryImageClick);
+galleryThumbnails.addEventListener("click", handleThumbnailClick);
 
 // CODE FOR LIGHTBOX
 
@@ -114,11 +96,13 @@ function handleLightboxCloseBtnClick(e) {
   const lightboxCloseBtn = e.target.closest(".lightbox__close-btn");
   if (!lightboxCloseBtn) return;
 
+  lightboxImagesContainer.classList.remove("transition");
+
   // Hide the lightbox
   lightbox.classList.remove("lightbox--open");
 }
 
-// EVENT LISTENERS
+// LIGHTBOX EVENT LISTENERS
 previousBtn.addEventListener("click", handlePreviousBtnClick);
 nextBtn.addEventListener("click", handleNextBtnClick);
 lightboxCloseBtn.addEventListener("click", handleLightboxCloseBtnClick);

@@ -33,12 +33,13 @@
   max-width: 8.8rem;
   max-height: 8.8rem;
   position: relative;
+  border: 0.2rem solid transparent;
 }
 
-@mixin thumbnail-overlay-styles {
+@mixin thumbnail-overlay-styles($background) {
   position: absolute;
   top: 0;
   height: 100%;
   width: 100%;
-  background: $color-thumbnail-overlay;
+  background: $background;
 }
