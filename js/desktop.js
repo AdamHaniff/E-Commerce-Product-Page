@@ -1,4 +1,4 @@
-import updateImage from "./imageUtils";
+import { translateImage, updateImage } from "./imageUtils";
 
 // VARIABLES
 const galleryImage = document.querySelector(".gallery__image");
@@ -12,6 +12,9 @@ const lightboxImagesContainer = document.querySelector(".lightbox__images");
 const lightboxImages = document.querySelectorAll(".lightbox__img");
 const previousBtn = document.querySelector(".lightbox__previous-btn");
 const nextBtn = document.querySelector(".lightbox__next-btn");
+
+// Initialize the current image index
+let currentImageIndex = 0;
 
 // FUNCTIONS
 function handleThumbnailHover(target) {
@@ -34,7 +37,18 @@ function handleThumbnailHover(target) {
   galleryImage.src = thumbnailImage.dataset.fullImage;
 }
 
-function handleThumbnailClick() {
+function handleThumbnailClick(target) {
+  // Find which thumbnail container was clicked
+  const thumbnailContainer = target;
+
+  // Make lighbox image the same image that was clicked in the thumbnail container
+  galleryThumbnailContainers.forEach((container, index) => {
+    if (container === thumbnailContainer) {
+      currentImageIndex = index;
+      translateImage(currentImageIndex, lightboxImagesContainer);
+    }
+  });
+
   // Display lightbox
   lightbox.classList.add("lightbox--open");
 }
@@ -52,7 +66,7 @@ function handleGalleryEvent(e, eventType) {
       if (eventType === "hover") {
         handleThumbnailHover(target);
       } else if (eventType === "click") {
-        handleThumbnailClick();
+        handleThumbnailClick(target);
       }
       return;
     }
@@ -73,14 +87,12 @@ galleryThumbnails.addEventListener("click", (e) =>
 
 // CODE FOR LIGHTBOX
 
-// Initialize the current image index
-let currentIndex = 0;
-
+// EVENT LISTENER CALLBACK FUNCTIONS
 function handlePreviousBtnClick(e) {
-  currentIndex = updateImage(
+  currentImageIndex = updateImage(
     lightboxImagesContainer,
     lightboxImages,
-    currentIndex,
+    currentImageIndex,
     e,
     ".lightbox__previous-btn",
     ".lightbox__next-btn"
@@ -88,10 +100,10 @@ function handlePreviousBtnClick(e) {
 }
 
 function handleNextBtnClick(e) {
-  currentIndex = updateImage(
+  currentImageIndex = updateImage(
     lightboxImagesContainer,
     lightboxImages,
-    currentIndex,
+    currentImageIndex,
     e,
     ".lightbox__previous-btn",
     ".lightbox__next-btn"

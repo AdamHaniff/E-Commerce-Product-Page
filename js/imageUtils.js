@@ -1,6 +1,6 @@
 // HELPER FUNCTION
-function translateImage(currentIndex, imagesContainer) {
-  const translateX = -currentIndex * 100;
+function translateImage(currentImageIndex, imagesContainer) {
+  const translateX = -currentImageIndex * 100;
   imagesContainer.style.transform = `translateX(${translateX}%)`;
 }
 
@@ -8,7 +8,7 @@ function translateImage(currentIndex, imagesContainer) {
 function updateImage(
   imagesContainer,
   images,
-  currentIndex,
+  currentImageIndex,
   e,
   previousBtnClass,
   nextBtnClass
@@ -17,14 +17,14 @@ function updateImage(
   const nextBtn = e.target.closest(nextBtnClass);
 
   if (previousBtn) {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
   } else if (nextBtn) {
-    currentIndex = (currentIndex + 1) % images.length;
+    currentImageIndex = (currentImageIndex + 1) % images.length;
   }
 
-  translateImage(currentIndex, imagesContainer);
+  translateImage(currentImageIndex, imagesContainer);
 
-  return currentIndex;
+  return currentImageIndex;
 }
 
-export default updateImage;
+export { translateImage, updateImage };

@@ -1,4 +1,4 @@
-import updateImage from "./imageUtils";
+import { updateImage } from "./imageUtils";
 
 // VARIABLES
 const imagesContainer = document.querySelector(".gallery__images");
@@ -7,13 +7,13 @@ const previousBtn = document.querySelector(".gallery__previous-btn");
 const nextBtn = document.querySelector(".gallery__next-btn");
 
 // Initialize the current image index
-let currentIndex = 0;
+let currentImageIndex = 0;
 
 function handlePreviousBtnClick(e) {
-  currentIndex = updateImage(
+  currentImageIndex = updateImage(
     imagesContainer,
     images,
-    currentIndex,
+    currentImageIndex,
     e,
     ".gallery__previous-btn",
     ".gallery__next-btn"
@@ -21,10 +21,10 @@ function handlePreviousBtnClick(e) {
 }
 
 function handleNextBtnClick(e) {
-  currentIndex = updateImage(
+  currentImageIndex = updateImage(
     imagesContainer,
     images,
-    currentIndex,
+    currentImageIndex,
     e,
     ".gallery__previous-btn",
     ".gallery__next-btn"
