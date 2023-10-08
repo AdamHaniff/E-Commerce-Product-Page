@@ -221,6 +221,7 @@
 
     &__images-container {
       overflow: hidden;
+      border-radius: 1.5rem;
     }
 
     &__images {
@@ -230,7 +231,6 @@
     &__img {
       width: 100%;
       height: 55rem;
-      border-radius: 1.5rem;
     }
 
     &__nav-btn {
@@ -251,10 +251,6 @@
 
     &__thumbnails {
       @include thumbnails-styles;
-    }
-
-    &__thumbnails &__thumbnail-container:first-child {
-      border: 0.2rem solid $color-pumpkin-orange;
     }
 
     &__thumbnail-container {

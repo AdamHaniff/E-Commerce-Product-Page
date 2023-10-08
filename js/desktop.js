@@ -12,10 +12,15 @@ const lightboxImagesContainer = document.querySelector(".lightbox__images");
 const lightboxImages = document.querySelectorAll(".lightbox__img");
 const previousBtn = document.querySelector(".lightbox__previous-btn");
 const nextBtn = document.querySelector(".lightbox__next-btn");
+const lightboxThumbnailContainers = document.querySelectorAll(
+  ".lightbox__thumbnail-container"
+);
+const lightboxThumbnails = document.querySelector(".lightbox__thumbnails");
 
 // Initialize the current image index
 let currentImageIndex = 0;
 
+// EVENT LISTENER CALLBACK FUNCTIONS
 function handleGalleryImageClick() {
   // Make lightbox image the same image that was clicked in the thumbnail container
   galleryThumbnailContainers.forEach((container, index) => {
@@ -69,7 +74,32 @@ galleryThumbnails.addEventListener("click", handleThumbnailClick);
 
 // CODE FOR LIGHTBOX
 
+// FUNCTIONS
+function makeThumbnailContainerClicked(currentImageIndex) {
+  lightboxThumbnailContainers.forEach((container, index) => {
+    // Remove 'container-clicked' class from container that already has the class
+    if (container.classList.contains("container-clicked")) {
+      container.classList.remove("container-clicked");
+    }
+
+    // Add 'container-clicked' class to the container that has the same image as the lightbox image that is currently being displayed
+    if (index === currentImageIndex) {
+      container.classList.add("container-clicked");
+    }
+  });
+}
+
 // EVENT LISTENER CALLBACK FUNCTIONS
+function handleLightboxCloseBtnClick(e) {
+  const lightboxCloseBtn = e.target.closest(".lightbox__close-btn");
+  if (!lightboxCloseBtn) return;
+
+  lightboxImagesContainer.classList.remove("transition");
+
+  // Hide the lightbox
+  lightbox.classList.remove("lightbox--open");
+}
+
 function handlePreviousBtnClick(e) {
   currentImageIndex = updateImage(
     lightboxImagesContainer,
@@ -79,6 +109,8 @@ function handlePreviousBtnClick(e) {
     ".lightbox__previous-btn",
     ".lightbox__next-btn"
   );
+
+  makeThumbnailContainerClicked(currentImageIndex);
 }
 
 function handleNextBtnClick(e) {
@@ -90,19 +122,52 @@ function handleNextBtnClick(e) {
     ".lightbox__previous-btn",
     ".lightbox__next-btn"
   );
+
+  makeThumbnailContainerClicked(currentImageIndex);
 }
 
-function handleLightboxCloseBtnClick(e) {
-  const lightboxCloseBtn = e.target.closest(".lightbox__close-btn");
-  if (!lightboxCloseBtn) return;
+function handleLightboxThumbnailClick(e) {
+  // Check if event target is 'lightboxThumbnails'
+  if (e.target === this) return;
 
-  lightboxImagesContainer.classList.remove("transition");
+  // Check if the event target or its parent has the class 'lightbox__thumbnail-container'
+  let target = e.target;
 
-  // Hide the lightbox
-  lightbox.classList.remove("lightbox--open");
+  while (target && target !== this) {
+    if (target.classList.contains("lightbox__thumbnail-container")) {
+      // If container already has 'container-clicked' class, then do nothing
+      if (target.classList.contains("container-clicked")) return;
+
+      // Remove 'container-clicked' class from previously-clicked container
+      lightboxThumbnailContainers.forEach((container) => {
+        if (container.classList.contains("container-clicked")) {
+          container.classList.remove("container-clicked");
+        }
+      });
+
+      // Add 'container-clicked' class to the container that was just clicked
+      target.classList.add("container-clicked");
+
+      // WHATEVER THUMBNAIL CONTAINER WAS CLICKED,
+      // WE WANT TO UPDATE CURRENTIMAGEINDEX TO THAT INDEX
+      lightboxThumbnailContainers.forEach((container, index) => {
+        if (container.classList.contains("container-clicked")) {
+          currentImageIndex = index;
+          lightboxImagesContainer.classList.add("transition");
+          translateImage(currentImageIndex, lightboxImagesContainer);
+        }
+      });
+
+      return;
+    }
+
+    // Move up to the parent element
+    target = target.parentElement;
+  }
 }
 
 // LIGHTBOX EVENT LISTENERS
 previousBtn.addEventListener("click", handlePreviousBtnClick);
 nextBtn.addEventListener("click", handleNextBtnClick);
 lightboxCloseBtn.addEventListener("click", handleLightboxCloseBtnClick);
+lightboxThumbnails.addEventListener("click", handleLightboxThumbnailClick);
