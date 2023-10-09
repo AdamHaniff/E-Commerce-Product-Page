@@ -9,13 +9,9 @@ function updateImage(
   imagesContainer,
   images,
   currentImageIndex,
-  e,
-  previousBtnClass,
-  nextBtnClass
+  previousBtn,
+  nextBtn
 ) {
-  const previousBtn = e.target.closest(previousBtnClass);
-  const nextBtn = e.target.closest(nextBtnClass);
-
   if (previousBtn) {
     currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
   } else if (nextBtn) {

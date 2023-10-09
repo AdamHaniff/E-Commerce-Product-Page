@@ -1,3 +1,4 @@
+import { removeContainerClickedClass } from "./helpers";
 import { translateImage, updateImage } from "./imageUtils";
 
 // VARIABLES
@@ -20,16 +21,10 @@ const lightboxThumbnails = document.querySelector(".lightbox__thumbnails");
 // Initialize the current image index
 let currentImageIndex = 0;
 
+// CODE FOR GALLERY
+
 // EVENT LISTENER CALLBACK FUNCTIONS
 function handleGalleryImageClick() {
-  // Make lightbox image the same image that was clicked in the thumbnail container
-  galleryThumbnailContainers.forEach((container, index) => {
-    if (container.classList.contains("container-clicked")) {
-      currentImageIndex = index;
-      translateImage(currentImageIndex, lightboxImagesContainer);
-    }
-  });
-
   // Display lightbox
   lightbox.classList.add("lightbox--open");
 }
@@ -47,11 +42,7 @@ function handleThumbnailClick(e) {
       if (target.classList.contains("container-clicked")) return;
 
       // Remove 'container-clicked' class from previously-clicked container
-      galleryThumbnailContainers.forEach((container) => {
-        if (container.classList.contains("container-clicked")) {
-          container.classList.remove("container-clicked");
-        }
-      });
+      removeContainerClickedClass(galleryThumbnailContainers);
 
       // Add 'container-clicked' class to the container that was just clicked
       target.classList.add("container-clicked");
@@ -59,6 +50,17 @@ function handleThumbnailClick(e) {
       // Change gallery image to the thumbnail image that was clicked
       const thumbnailImage = target.querySelector(".gallery__thumbnail");
       galleryImage.src = thumbnailImage.dataset.fullImage;
+
+      // Make lightbox image the same image that was clicked in the gallery thumbnail container
+      galleryThumbnailContainers.forEach((container, index) => {
+        if (container.classList.contains("container-clicked")) {
+          currentImageIndex = index;
+          translateImage(currentImageIndex, lightboxImagesContainer);
+        }
+      });
+
+      // Whichever image is currented displayed in the gallery, the lightbox thumbnail container with that image needs to have the 'container-clicked' class
+      makeThumbnailContainerClicked(currentImageIndex);
 
       return;
     }
@@ -100,27 +102,16 @@ function handleLightboxCloseBtnClick(e) {
   lightbox.classList.remove("lightbox--open");
 }
 
-function handlePreviousBtnClick(e) {
+function handleNavigationBtnClick(e) {
+  const previousBtn = e.target.closest(".lightbox__previous-btn");
+  const nextBtn = e.target.closest(".lightbox__next-btn");
+
   currentImageIndex = updateImage(
     lightboxImagesContainer,
     lightboxImages,
     currentImageIndex,
-    e,
-    ".lightbox__previous-btn",
-    ".lightbox__next-btn"
-  );
-
-  makeThumbnailContainerClicked(currentImageIndex);
-}
-
-function handleNextBtnClick(e) {
-  currentImageIndex = updateImage(
-    lightboxImagesContainer,
-    lightboxImages,
-    currentImageIndex,
-    e,
-    ".lightbox__previous-btn",
-    ".lightbox__next-btn"
+    previousBtn,
+    nextBtn
   );
 
   makeThumbnailContainerClicked(currentImageIndex);
@@ -139,17 +130,12 @@ function handleLightboxThumbnailClick(e) {
       if (target.classList.contains("container-clicked")) return;
 
       // Remove 'container-clicked' class from previously-clicked container
-      lightboxThumbnailContainers.forEach((container) => {
-        if (container.classList.contains("container-clicked")) {
-          container.classList.remove("container-clicked");
-        }
-      });
+      removeContainerClickedClass(lightboxThumbnailContainers);
 
       // Add 'container-clicked' class to the container that was just clicked
       target.classList.add("container-clicked");
 
-      // WHATEVER THUMBNAIL CONTAINER WAS CLICKED,
-      // WE WANT TO UPDATE CURRENTIMAGEINDEX TO THAT INDEX
+      // Whichever thumbnail container was clicked, the image inside that container needs to be displayed as the lightbox image.
       lightboxThumbnailContainers.forEach((container, index) => {
         if (container.classList.contains("container-clicked")) {
           currentImageIndex = index;
@@ -167,7 +153,7 @@ function handleLightboxThumbnailClick(e) {
 }
 
 // LIGHTBOX EVENT LISTENERS
-previousBtn.addEventListener("click", handlePreviousBtnClick);
-nextBtn.addEventListener("click", handleNextBtnClick);
+previousBtn.addEventListener("click", handleNavigationBtnClick);
+nextBtn.addEventListener("click", handleNavigationBtnClick);
 lightboxCloseBtn.addEventListener("click", handleLightboxCloseBtnClick);
 lightboxThumbnails.addEventListener("click", handleLightboxThumbnailClick);
