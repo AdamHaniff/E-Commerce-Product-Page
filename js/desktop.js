@@ -21,46 +21,60 @@ const lightboxThumbnails = document.querySelector(".lightbox__thumbnails");
 // Initialize the current image index
 let currentImageIndex = 0;
 
-// CODE FOR GALLERY
+// HELPER FUNCTIONS
+function displayCorrectLightboxImg(thumbnailContainers) {
+  thumbnailContainers.forEach((container, index) => {
+    if (container.classList.contains("container-clicked")) {
+      currentImageIndex = index;
 
-// EVENT LISTENER CALLBACK FUNCTIONS
-function handleGalleryImageClick() {
-  // Display lightbox
-  lightbox.classList.add("lightbox--open");
+      if (thumbnailContainers === lightboxThumbnailContainers) {
+        lightboxImagesContainer.classList.add("transition");
+      }
+
+      translateImage(currentImageIndex, lightboxImagesContainer);
+    }
+  });
 }
 
-function handleThumbnailClick(e) {
-  // Check if event target is 'galleryThumbnails'
+function displayCorrectGalleryImg(target) {
+  const thumbnailImage = target.querySelector(".gallery__thumbnail");
+  galleryImage.src = thumbnailImage.dataset.fullImage;
+}
+
+// EVENT LISTENER CALLBACK FUNCTION FOR GALLERY AND LIGHTBOX THUMBNAILS
+function handleThumbnailClick(e, thumbnailContainerClass, thumbnailContainers) {
+  // Check if event target is 'galleryThumbnails' or 'lightboxThumbnails'
   if (e.target === this) return;
 
-  // Check if the event target or its parent has the class 'gallery__thumbnail-container'
+  // Check if the event target or its parent has the class 'gallery__thumbnail-container' or 'lightbox__thumbnail-container'
   let target = e.target;
 
   while (target && target !== this) {
-    if (target.classList.contains("gallery__thumbnail-container")) {
+    if (target.classList.contains(thumbnailContainerClass)) {
       // If container already has 'container-clicked' class, then do nothing
       if (target.classList.contains("container-clicked")) return;
 
       // Remove 'container-clicked' class from previously-clicked container
-      removeContainerClickedClass(galleryThumbnailContainers);
+      removeContainerClickedClass(thumbnailContainers);
 
       // Add 'container-clicked' class to the container that was just clicked
       target.classList.add("container-clicked");
 
-      // Change gallery image to the thumbnail image that was clicked
-      const thumbnailImage = target.querySelector(".gallery__thumbnail");
-      galleryImage.src = thumbnailImage.dataset.fullImage;
+      if (thumbnailContainers === galleryThumbnailContainers) {
+        // Change gallery image to the thumbnail image that was clicked
+        displayCorrectGalleryImg(target);
 
-      // Make lightbox image the same image that was clicked in the gallery thumbnail container
-      galleryThumbnailContainers.forEach((container, index) => {
-        if (container.classList.contains("container-clicked")) {
-          currentImageIndex = index;
-          translateImage(currentImageIndex, lightboxImagesContainer);
-        }
-      });
+        // Make lightbox image the same image that was clicked in the gallery thumbnail container
+        displayCorrectLightboxImg(galleryThumbnailContainers);
 
-      // Whichever image is currented displayed in the gallery, the lightbox thumbnail container with that image needs to have the 'container-clicked' class
-      makeThumbnailContainerClicked(currentImageIndex);
+        // Whichever image is currented displayed in the gallery, the lightbox thumbnail container with that image needs to have the 'container-clicked' class
+        makeThumbnailContainerClicked(currentImageIndex);
+      }
+
+      if (thumbnailContainers === lightboxThumbnailContainers) {
+        // Whichever thumbnail container was clicked, the image inside that container needs to be displayed as the lightbox image.
+        displayCorrectLightboxImg(lightboxThumbnailContainers);
+      }
 
       return;
     }
@@ -70,25 +84,35 @@ function handleThumbnailClick(e) {
   }
 }
 
+// CODE FOR GALLERY
+
+// EVENT LISTENER CALLBACK FUNCTION
+function handleGalleryImageClick() {
+  // Display lightbox
+  lightbox.classList.add("lightbox--open");
+}
+
 // GALLERY EVENT LISTENERS
 galleryImage.addEventListener("click", handleGalleryImageClick);
-galleryThumbnails.addEventListener("click", handleThumbnailClick);
+galleryThumbnails.addEventListener("click", (e) =>
+  handleThumbnailClick(
+    e,
+    "gallery__thumbnail-container",
+    galleryThumbnailContainers
+  )
+);
 
 // CODE FOR LIGHTBOX
 
-// FUNCTIONS
+// FUNCTION
 function makeThumbnailContainerClicked(currentImageIndex) {
-  lightboxThumbnailContainers.forEach((container, index) => {
-    // Remove 'container-clicked' class from container that already has the class
-    if (container.classList.contains("container-clicked")) {
-      container.classList.remove("container-clicked");
-    }
+  // Remove 'container-clicked' class from container that already has the class
+  removeContainerClickedClass(lightboxThumbnailContainers);
 
-    // Add 'container-clicked' class to the container that has the same image as the lightbox image that is currently being displayed
-    if (index === currentImageIndex) {
-      container.classList.add("container-clicked");
-    }
-  });
+  // Add 'container-clicked' class to the container that has the same image as the lightbox image that is currently being displayed
+  lightboxThumbnailContainers[currentImageIndex].classList.add(
+    "container-clicked"
+  );
 }
 
 // EVENT LISTENER CALLBACK FUNCTIONS
@@ -117,43 +141,14 @@ function handleNavigationBtnClick(e) {
   makeThumbnailContainerClicked(currentImageIndex);
 }
 
-function handleLightboxThumbnailClick(e) {
-  // Check if event target is 'lightboxThumbnails'
-  if (e.target === this) return;
-
-  // Check if the event target or its parent has the class 'lightbox__thumbnail-container'
-  let target = e.target;
-
-  while (target && target !== this) {
-    if (target.classList.contains("lightbox__thumbnail-container")) {
-      // If container already has 'container-clicked' class, then do nothing
-      if (target.classList.contains("container-clicked")) return;
-
-      // Remove 'container-clicked' class from previously-clicked container
-      removeContainerClickedClass(lightboxThumbnailContainers);
-
-      // Add 'container-clicked' class to the container that was just clicked
-      target.classList.add("container-clicked");
-
-      // Whichever thumbnail container was clicked, the image inside that container needs to be displayed as the lightbox image.
-      lightboxThumbnailContainers.forEach((container, index) => {
-        if (container.classList.contains("container-clicked")) {
-          currentImageIndex = index;
-          lightboxImagesContainer.classList.add("transition");
-          translateImage(currentImageIndex, lightboxImagesContainer);
-        }
-      });
-
-      return;
-    }
-
-    // Move up to the parent element
-    target = target.parentElement;
-  }
-}
-
 // LIGHTBOX EVENT LISTENERS
 previousBtn.addEventListener("click", handleNavigationBtnClick);
 nextBtn.addEventListener("click", handleNavigationBtnClick);
 lightboxCloseBtn.addEventListener("click", handleLightboxCloseBtnClick);
-lightboxThumbnails.addEventListener("click", handleLightboxThumbnailClick);
+lightboxThumbnails.addEventListener("click", (e) =>
+  handleThumbnailClick(
+    e,
+    "lightbox__thumbnail-container",
+    lightboxThumbnailContainers
+  )
+);
