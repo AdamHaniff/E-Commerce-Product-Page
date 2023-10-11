@@ -17,11 +17,31 @@ const lightboxThumbnailContainers = document.querySelectorAll(
   ".lightbox__thumbnail-container"
 );
 const lightboxThumbnails = document.querySelector(".lightbox__thumbnails");
+const lightboxOverlay = document.querySelector(".lightbox__overlay");
 
 // Initialize the current image index
 let currentImageIndex = 0;
 
-// HELPER FUNCTIONS
+// CODE FOR GALLERY
+
+// FUNCTIONS
+function displayCorrectGalleryImg(target) {
+  const thumbnailImage = target.querySelector(".gallery__thumbnail");
+  galleryImage.src = thumbnailImage.dataset.fullImage;
+}
+
+// EVENT LISTENER CALLBACK FUNCTION
+function handleGalleryImageClick() {
+  // Display lightbox
+  lightbox.classList.add("lightbox--open");
+}
+
+// GALLERY EVENT LISTENER
+galleryImage.addEventListener("click", handleGalleryImageClick);
+
+// CODE FOR LIGHTBOX
+
+// FUNCTIONS
 function displayCorrectLightboxImg(thumbnailContainers) {
   thumbnailContainers.forEach((container, index) => {
     if (container.classList.contains("container-clicked")) {
@@ -36,10 +56,56 @@ function displayCorrectLightboxImg(thumbnailContainers) {
   });
 }
 
-function displayCorrectGalleryImg(target) {
-  const thumbnailImage = target.querySelector(".gallery__thumbnail");
-  galleryImage.src = thumbnailImage.dataset.fullImage;
+function makeThumbnailContainerClicked(currentImageIndex) {
+  // Remove 'container-clicked' class from container that already has the class
+  removeContainerClickedClass(lightboxThumbnailContainers);
+
+  // Add 'container-clicked' class to the container that has the same image as the lightbox image that is currently being displayed
+  lightboxThumbnailContainers[currentImageIndex].classList.add(
+    "container-clicked"
+  );
 }
+
+function hideLightbox() {
+  lightboxImagesContainer.classList.remove("transition");
+  lightbox.classList.remove("lightbox--open");
+}
+
+// EVENT LISTENER CALLBACK FUNCTIONS
+function handleLightboxCloseBtnClick(e) {
+  const lightboxCloseBtn = e.target.closest(".lightbox__close-btn");
+  if (!lightboxCloseBtn) return;
+
+  hideLightbox();
+}
+
+function handleLightboxOverlayClick(e) {
+  const target = e.target;
+  if (!target.classList.contains("lightbox__overlay")) return;
+
+  hideLightbox();
+}
+
+function handleNavigationBtnClick(e) {
+  const previousBtn = e.target.closest(".lightbox__previous-btn");
+  const nextBtn = e.target.closest(".lightbox__next-btn");
+
+  currentImageIndex = updateImage(
+    lightboxImagesContainer,
+    lightboxImages,
+    currentImageIndex,
+    previousBtn,
+    nextBtn
+  );
+
+  makeThumbnailContainerClicked(currentImageIndex);
+}
+
+// LIGHTBOX EVENT LISTENERS
+previousBtn.addEventListener("click", handleNavigationBtnClick);
+nextBtn.addEventListener("click", handleNavigationBtnClick);
+lightboxCloseBtn.addEventListener("click", handleLightboxCloseBtnClick);
+lightboxOverlay.addEventListener("click", handleLightboxOverlayClick);
 
 // EVENT LISTENER CALLBACK FUNCTION FOR GALLERY AND LIGHTBOX THUMBNAILS
 function handleThumbnailClick(e, thumbnailContainerClass, thumbnailContainers) {
@@ -84,16 +150,7 @@ function handleThumbnailClick(e, thumbnailContainerClass, thumbnailContainers) {
   }
 }
 
-// CODE FOR GALLERY
-
-// EVENT LISTENER CALLBACK FUNCTION
-function handleGalleryImageClick() {
-  // Display lightbox
-  lightbox.classList.add("lightbox--open");
-}
-
-// GALLERY EVENT LISTENERS
-galleryImage.addEventListener("click", handleGalleryImageClick);
+// GALLERY AND LIGHTBOX THUMBNAILS EVENT LISTENERS
 galleryThumbnails.addEventListener("click", (e) =>
   handleThumbnailClick(
     e,
@@ -102,49 +159,6 @@ galleryThumbnails.addEventListener("click", (e) =>
   )
 );
 
-// CODE FOR LIGHTBOX
-
-// FUNCTION
-function makeThumbnailContainerClicked(currentImageIndex) {
-  // Remove 'container-clicked' class from container that already has the class
-  removeContainerClickedClass(lightboxThumbnailContainers);
-
-  // Add 'container-clicked' class to the container that has the same image as the lightbox image that is currently being displayed
-  lightboxThumbnailContainers[currentImageIndex].classList.add(
-    "container-clicked"
-  );
-}
-
-// EVENT LISTENER CALLBACK FUNCTIONS
-function handleLightboxCloseBtnClick(e) {
-  const lightboxCloseBtn = e.target.closest(".lightbox__close-btn");
-  if (!lightboxCloseBtn) return;
-
-  lightboxImagesContainer.classList.remove("transition");
-
-  // Hide the lightbox
-  lightbox.classList.remove("lightbox--open");
-}
-
-function handleNavigationBtnClick(e) {
-  const previousBtn = e.target.closest(".lightbox__previous-btn");
-  const nextBtn = e.target.closest(".lightbox__next-btn");
-
-  currentImageIndex = updateImage(
-    lightboxImagesContainer,
-    lightboxImages,
-    currentImageIndex,
-    previousBtn,
-    nextBtn
-  );
-
-  makeThumbnailContainerClicked(currentImageIndex);
-}
-
-// LIGHTBOX EVENT LISTENERS
-previousBtn.addEventListener("click", handleNavigationBtnClick);
-nextBtn.addEventListener("click", handleNavigationBtnClick);
-lightboxCloseBtn.addEventListener("click", handleLightboxCloseBtnClick);
 lightboxThumbnails.addEventListener("click", (e) =>
   handleThumbnailClick(
     e,
