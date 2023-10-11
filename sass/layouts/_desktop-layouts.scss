@@ -1,1 +1,16 @@
 // ********* DESKTOP LAYOUTS ********
+
+// ******* 1147px MEDIA QUERY *******
+@media only screen and (min-width: 71.6875rem) {
+  // ************ HEADER ************
+  .header {
+    margin: 0 12rem 9rem;
+  }
+
+  // ******* GALLERY-PRODUCT ********
+  .gallery-product {
+    gap: 9rem;
+    padding: 0 12rem 13.2rem;
+    align-items: initial;
+  }
+}

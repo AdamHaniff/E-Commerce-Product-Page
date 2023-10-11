@@ -32,6 +32,10 @@ function displayCorrectGalleryImg(target) {
 
 // EVENT LISTENER CALLBACK FUNCTION
 function handleGalleryImageClick() {
+  // This code solves the problem for when a gallery thumbnail is never clicked, the wrong lightbox image and thumbnail container might be displayed depending on how the user last interacted with the lightbox
+  displayCorrectLightboxImg(galleryThumbnailContainers);
+  makeThumbnailContainerClicked(currentImageIndex);
+
   // Display lightbox
   lightbox.classList.add("lightbox--open");
 }

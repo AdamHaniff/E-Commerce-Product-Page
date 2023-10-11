@@ -541,15 +541,14 @@ button {
   .gallery__thumbnail-container {
     border-radius: 1rem;
     overflow: hidden;
-    width: 25%;
     max-width: 8.8rem;
     max-height: 8.8rem;
     position: relative;
     border: 0.2rem solid transparent;
   }
   .gallery__thumbnail {
-    width: 8.8rem;
-    height: 8.8rem;
+    width: 100%;
+    height: 100%;
   }
   .gallery__thumbnail-container:hover .gallery__thumbnail-overlay {
     position: absolute;
@@ -634,7 +633,6 @@ button {
   .lightbox__thumbnail-container {
     border-radius: 1rem;
     overflow: hidden;
-    width: 25%;
     max-width: 8.8rem;
     max-height: 8.8rem;
     position: relative;
@@ -719,6 +717,16 @@ button {
   }
   .lightbox__thumbnail-container:hover {
     cursor: pointer;
+  }
+}
+@media only screen and (min-width: 71.6875rem) {
+  .header {
+    margin: 0 12rem 9rem;
+  }
+  .gallery-product {
+    gap: 9rem;
+    padding: 0 12rem 13.2rem;
+    align-items: initial;
   }
 }
 .hidden {
