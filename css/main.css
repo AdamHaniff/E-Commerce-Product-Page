@@ -719,14 +719,19 @@ button {
     cursor: pointer;
   }
 }
-@media only screen and (min-width: 71.6875rem) {
+@media only screen and (min-width: 71.75rem) {
   .header {
     margin: 0 12rem 9rem;
+    max-width: 98.061rem;
   }
   .gallery-product {
     gap: 9rem;
     padding: 0 12rem 13.2rem;
     align-items: initial;
+    max-width: 122rem;
+  }
+  .product {
+    margin-top: 6.2rem;
   }
 }
 .hidden {
