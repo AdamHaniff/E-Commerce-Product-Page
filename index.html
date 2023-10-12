@@ -25,52 +25,54 @@
     <script type="module" defer src="./js/desktop.js"></script>
   </head>
   <body>
-    <header class="header">
-      <div class="header__menu-logo">
-        <button class="header__menu-btn mobile" type="button">
-          <img
-            src="./images/icon-menu.svg"
-            alt="Menu icon"
-            class="header__menu-icon"
-          />
-        </button>
-        <a href="#" class="header__logo-link"
-          ><img src="./images/logo.svg" alt="Logo" class="header__logo"
-        /></a>
-      </div>
-      <nav class="header__nav desktop">
-        <ul class="header__links">
-          <li><a href="#" class="header__link">Collections</a></li>
-          <li><a href="#" class="header__link">Men</a></li>
-          <li><a href="#" class="header__link">Women</a></li>
-          <li><a href="#" class="header__link">About</a></li>
-          <li><a href="#" class="header__link">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="header__cart-avatar">
-        <button class="header__cart-btn" type="button">
-          <svg
-            class="header__cart-icon"
-            width="22"
-            height="20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
-              fill="#69707D"
-              fill-rule="nonzero"
+    <div class="header__container">
+      <header class="header">
+        <div class="header__menu-logo">
+          <button class="header__menu-btn mobile" type="button">
+            <img
+              src="./images/icon-menu.svg"
+              alt="Menu icon"
+              class="header__menu-icon"
             />
-          </svg>
-          <span class="header__cart-quantity hidden">3</span>
-        </button>
-        <img
-          src="./images/image-avatar.png"
-          alt="Avatar image"
-          class="header__avatar"
-        />
-      </div>
-      <hr class="header__line desktop" />
-    </header>
+          </button>
+          <a href="#" class="header__logo-link"
+            ><img src="./images/logo.svg" alt="Logo" class="header__logo"
+          /></a>
+        </div>
+        <nav class="header__nav desktop">
+          <ul class="header__links">
+            <li><a href="#" class="header__link">Collections</a></li>
+            <li><a href="#" class="header__link">Men</a></li>
+            <li><a href="#" class="header__link">Women</a></li>
+            <li><a href="#" class="header__link">About</a></li>
+            <li><a href="#" class="header__link">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header__cart-avatar">
+          <button class="header__cart-btn" type="button">
+            <svg
+              class="header__cart-icon"
+              width="22"
+              height="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                fill="#69707D"
+                fill-rule="nonzero"
+              />
+            </svg>
+            <span class="header__cart-quantity hidden">3</span>
+          </button>
+          <img
+            src="./images/image-avatar.png"
+            alt="Avatar image"
+            class="header__avatar"
+          />
+        </div>
+        <hr class="header__line desktop" />
+      </header>
+    </div>
     <div class="gallery-product">
       <div class="cart hidden">
         <div class="cart__text">Cart</div>

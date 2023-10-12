@@ -3,9 +3,16 @@
 // ******* 1148px MEDIA QUERY *******
 @media only screen and (min-width: 71.75rem) {
   // ************ HEADER ************
+  .header__container {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 9rem;
+  }
+
   .header {
-    margin: 0 12rem 9rem;
+    margin: 0 12rem;
     max-width: 98.061rem;
+    width: 100%;
   }
 
   // ******* GALLERY-PRODUCT ********
@@ -20,4 +27,61 @@
   .product {
     margin-top: 6.2rem;
   }
+
+  // ************* CART *************
+  .cart {
+    right: 12rem;
+  }
+}
+
+// ******* 1440px MEDIA QUERY *******
+@media only screen and (min-width: 90em) {
+  // ************ HEADER ************
+  .header {
+    margin: 0 16.5rem;
+    max-width: initial;
+  }
+
+  // ******* GALLERY-PRODUCT *******
+  .gallery-product {
+    gap: 12.5rem;
+    padding: 0 0 13.2rem;
+    max-width: 101.5rem;
+  }
+
+  // *********** PRODUCT ***********
+  .product {
+    &__company {
+      letter-spacing: 0.2rem;
+      font-size: 1.3rem;
+      margin-bottom: 2.7rem;
+    }
+
+    &__name {
+      margin-bottom: 3.2rem;
+      font-size: 4.4rem;
+      line-height: 4.8rem;
+    }
+
+    &__description {
+      font-size: 1.6rem;
+      line-height: 2.6rem;
+    }
+
+    &__pricing {
+      flex-wrap: wrap;
+      margin-bottom: 3.2rem;
+    }
+
+    &__percent-off {
+      margin-right: initial;
+    }
+
+    &__original-price {
+      flex-basis: 100%;
+      margin-top: 1rem;
+    }
+  }
+
+  // ******** QUANTITY-CART *********
 }
