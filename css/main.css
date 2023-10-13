@@ -747,7 +747,7 @@ button {
 @media only screen and (min-width: 90em) {
   .header {
     margin: 0 16.5rem;
-    max-width: initial;
+    max-width: 109.364rem;
   }
   .gallery-product {
     gap: 12.5rem;
@@ -778,6 +778,22 @@ button {
   .product__original-price {
     flex-basis: 100%;
     margin-top: 1rem;
+  }
+  .quantity {
+    width: 15.7rem;
+    height: 5.6rem;
+    padding: 0 1.6rem;
+  }
+  .add-cart-btn {
+    flex: 1;
+  }
+  .cart {
+    top: -10.9rem;
+    right: -12.3rem;
+    height: 25.6rem;
+  }
+  .cart__thumbnail-description-delete {
+    margin-bottom: 2.4rem;
   }
 }
 .hidden {

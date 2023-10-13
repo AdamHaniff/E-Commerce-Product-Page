@@ -186,3 +186,22 @@ quantityMinusBtn.addEventListener("click", handleQuantityMinusBtnClick);
 addToCartBtn.addEventListener("click", handleAddToCartBtnClick);
 headerCartBtn.addEventListener("click", handleHeaderCartBtnClick);
 cartDeleteBtn.addEventListener("click", handleCartDeleteBtnClick);
+
+document.addEventListener("click", function (e) {
+  const target = e.target;
+
+  if (
+    target.closest(".header__cart-btn") === headerCartBtn ||
+    target.closest(".cart") === cart
+  )
+    return;
+
+  if (!cart.classList.contains("hidden")) {
+    cart.classList.add("hidden");
+    headerCartBtn.classList.remove("clicked");
+
+    if (totalCartQuantity > 0) {
+      headerCartBtn.classList.add("pulse");
+    }
+  }
+});
