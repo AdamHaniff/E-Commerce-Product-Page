@@ -1,4 +1,4 @@
-import { removeContainerClickedClass } from "./helpers";
+import { removeContainerClickedClass } from "./helper";
 import { translateImage, updateImage } from "./imageUtils";
 
 // VARIABLES

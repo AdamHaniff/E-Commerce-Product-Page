@@ -17,10 +17,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/main.css" />
-    <script type="module" defer src="./js/helpers.js"></script>
+    <script type="module" defer src="./js/helper.js"></script>
     <script type="module" defer src="./js/imageUtils.js"></script>
     <script type="module" defer src="./js/sidebar.js"></script>
-    <script type="module" defer src="./js/gallery.js"></script>
+    <script type="module" defer src="./js/gallery-mobile.js"></script>
     <script type="module" defer src="./js/main.js"></script>
     <script type="module" defer src="./js/desktop.js"></script>
   </head>
@@ -91,8 +91,8 @@
               >
               <div class="cart__product-pricing">
                 <span class="cart__product-price">$125.00 x</span>
-                <span class="cart__product-quantity">3</span>
-                <span class="cart__total-price">$375.00</span>
+                <span class="cart__product-quantity"></span>
+                <span class="cart__total-price"></span>
               </div>
             </div>
             <button class="cart__delete-btn" type="button">
@@ -174,7 +174,6 @@
           </svg>
         </button>
       </div>
-
       <div class="gallery desktop">
         <img
           src="./images/image-product-1.jpg"
@@ -336,7 +335,6 @@
           <div class="lightbox__overlay"></div>
         </div>
       </div>
-
       <div class="product">
         <span class="product__company">Sneaker Company</span>
         <span class="product__name">Fall Limited Edition Sneakers</span>
