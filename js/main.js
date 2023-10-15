@@ -85,19 +85,6 @@ function resetQuantity() {
   quantityNumber.textContent = quantity;
 }
 
-function isCartOpen() {
-  // Check if the cart is already open
-  if (!cart.classList.contains("hidden")) {
-    // Check if 'cartEmptyContainer' is being displayed
-    if (!cartEmptyContainer.classList.contains("hidden")) {
-      showCartFullContainer();
-    }
-
-    showCartTotalPrice();
-    return true;
-  }
-}
-
 // EVENT LISTENER CALLBACK FUNCTIONS
 function handleQuantityPlusBtnClick(e) {
   const quantityPlusBtn = e.target.closest(".quantity__plus");
@@ -133,9 +120,6 @@ function handleAddToCartBtnClick(e) {
   scrollToTopOfPage();
   displayHeaderCartQuantity();
   resetQuantity();
-
-  // Check if the cart is currently open
-  if (isCartOpen()) return;
 
   // Make 'headerCartBtn' pulse and give cart icon a color change animation
   headerCartBtn.classList.add("pulse");
@@ -180,28 +164,21 @@ function handleCartDeleteBtnClick(e) {
   showCartEmptyContainer();
 }
 
+function handleDocumentClick(e) {
+  // Check if the click was not on the 'headerCartBtn' and the cart
+  if (
+    !(e.target.closest(".header__cart-btn") === headerCartBtn) &&
+    !(e.target.closest(".cart") === cart)
+  ) {
+    // Hide the cart and make the 'headerCartBtn' gray or have the pulse class depending on the value of 'totalCartQuantity'
+    isHeaderCartBtnClicked();
+  }
+}
+
 // EVENT LISTENERS
 quantityPlusBtn.addEventListener("click", handleQuantityPlusBtnClick);
 quantityMinusBtn.addEventListener("click", handleQuantityMinusBtnClick);
 addToCartBtn.addEventListener("click", handleAddToCartBtnClick);
 headerCartBtn.addEventListener("click", handleHeaderCartBtnClick);
 cartDeleteBtn.addEventListener("click", handleCartDeleteBtnClick);
-
-document.addEventListener("click", function (e) {
-  const target = e.target;
-
-  if (
-    target.closest(".header__cart-btn") === headerCartBtn ||
-    target.closest(".cart") === cart
-  )
-    return;
-
-  if (!cart.classList.contains("hidden")) {
-    cart.classList.add("hidden");
-    headerCartBtn.classList.remove("clicked");
-
-    if (totalCartQuantity > 0) {
-      headerCartBtn.classList.add("pulse");
-    }
-  }
-});
+document.addEventListener("click", handleDocumentClick);

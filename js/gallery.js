@@ -9,28 +9,19 @@ const nextBtn = document.querySelector(".gallery__next-btn");
 // Initialize the current image index
 let currentImageIndex = 0;
 
-function handlePreviousBtnClick(e) {
-  currentImageIndex = updateImage(
-    imagesContainer,
-    images,
-    currentImageIndex,
-    e,
-    ".gallery__previous-btn",
-    ".gallery__next-btn"
-  );
-}
+function handleNavigationBtnClick(e) {
+  const previousBtn = e.target.closest(".gallery__previous-btn");
+  const nextBtn = e.target.closest(".gallery__next-btn");
 
-function handleNextBtnClick(e) {
   currentImageIndex = updateImage(
     imagesContainer,
     images,
     currentImageIndex,
-    e,
-    ".gallery__previous-btn",
-    ".gallery__next-btn"
+    previousBtn,
+    nextBtn
   );
 }
 
 // EVENT LISTENERS
-previousBtn.addEventListener("click", handlePreviousBtnClick);
-nextBtn.addEventListener("click", handleNextBtnClick);
+previousBtn.addEventListener("click", handleNavigationBtnClick);
+nextBtn.addEventListener("click", handleNavigationBtnClick);
