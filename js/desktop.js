@@ -28,6 +28,9 @@ let currentImageIndex = 0;
 function displayCorrectGalleryImg(target) {
   const thumbnailImage = target.querySelector(".gallery__thumbnail");
   galleryImage.src = thumbnailImage.dataset.fullImage;
+
+  console.log(galleryImage.src);
+  console.log(thumbnailImage.dataset.fullImage);
 }
 
 // EVENT LISTENER CALLBACK FUNCTION
