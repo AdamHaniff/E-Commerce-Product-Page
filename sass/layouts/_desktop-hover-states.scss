@@ -34,8 +34,7 @@
       cursor: pointer;
     }
 
-    &-btn:hover svg path,
-    &-btn:hover svg g rect {
+    &-btn:hover svg path {
       fill: $color-apricot;
     }
   }

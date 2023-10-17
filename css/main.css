@@ -687,7 +687,7 @@ button {
   .quantity-btn:hover {
     cursor: pointer;
   }
-  .quantity-btn:hover svg path, .quantity-btn:hover svg g rect {
+  .quantity-btn:hover svg path {
     fill: #ffab6a;
   }
   .add-cart-btn:hover {
